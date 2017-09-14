@@ -6,7 +6,7 @@
 
 <div id="input-container">
   <div>
-    <input [(ngModel)]="userInput" id="input-bar" placeholder="Aa" />
+    <input [(ngModel)]="userInput" (keydown)="handleKeyDown($event)" id="input-bar" placeholder="Aa" />
     <button (click)="sendMessage()" id="send-button">Send</button>
   </div>
 </div>
