@@ -1,0 +1,12 @@
+<div id="conversation-container">
+  <p *ngFor="let message of messages">
+    {{message.payload}}
+  </p>
+</div>
+
+<div id="input-container">
+  <div>
+    <input [(ngModel)]="userInput" id="input-bar" placeholder="Aa" />
+    <button (click)="sendMessage()" id="send-button">Send</button>
+  </div>
+</div>
