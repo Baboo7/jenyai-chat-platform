@@ -5,8 +5,7 @@ import { WebsocketService } from '../../Services/websocket.service';
 @Component({
   selector: 'chat',
   templateUrl: 'chat.component.html',
-  styleUrls: [ 'chat.component.scss' ],
-  providers: [ WebsocketService ]
+  styleUrls: [ 'chat.component.scss' ]
 })
 export class ChatComponent implements OnInit, OnDestroy {
 
