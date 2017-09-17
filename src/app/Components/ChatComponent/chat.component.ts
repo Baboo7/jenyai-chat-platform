@@ -18,8 +18,9 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   private sendMessage(): void {
     this.websocket.send('message', {
+      emitterType: this.emitterType,
       type: 'text',
-      text: this.userInput
+      payload: this.userInput
     });
     this.messages.push({payload: this.userInput});
     this.userInput = '';

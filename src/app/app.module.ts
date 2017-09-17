@@ -9,6 +9,7 @@ import { ChatComponent } from './Components/ChatComponent/chat.component';
 import { HeaderComponent } from './Components/HeaderComponent/header.component';
 import { LandingPageComponent } from './Components/LandingPageComponent/landing-page.component';
 import { StudentChatComponent } from './Components/StudentChatComponent/student-chat.component';
+import { TeacherChatComponent } from './Components/TeacherChatComponent/teacher-chat.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { StudentChatComponent } from './Components/StudentChatComponent/student-
     ChatComponent,
     HeaderComponent,
     LandingPageComponent,
-    StudentChatComponent
+    StudentChatComponent,
+    TeacherChatComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +29,10 @@ import { StudentChatComponent } from './Components/StudentChatComponent/student-
         {
           path: 'student',
           component: StudentChatComponent
+        },
+        {
+          path: 'teacher',
+          component: TeacherChatComponent
         },
         {
           path: '',

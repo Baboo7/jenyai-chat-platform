@@ -14,9 +14,8 @@ export class WebsocketService {
   constructor() {
     this.socket = io(this.url);
 
-    this.socket.on('set-uuid', data => {
+    this.socket.on('set-id', data => {
       this.id = data.id;
-      console.log(this.id);
     })
   }
 
