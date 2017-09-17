@@ -33,9 +33,9 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.connection = this.websocket.onEvent('message').subscribe(message => {
+    this.connection = this.websocket.addListener('message').subscribe(message => {
       this.messages.push(message);
-    })
+    });
   }
 
   ngOnDestroy() {

@@ -1,0 +1,10 @@
+<div id="title">
+  <h3>Connected students</h3>
+</div>
+
+<div id="students-list">
+  <div class="student" *ngFor="let student of students; index as i" (click)="selectStudent(i)">
+    <span *ngIf="i == selectedStudent">></span>
+    Student {{i + 1}}
+  </div>
+</div>
