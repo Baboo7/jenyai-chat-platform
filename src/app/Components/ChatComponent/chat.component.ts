@@ -12,13 +12,11 @@ export class ChatComponent implements OnInit, OnDestroy {
   private userInput = '';
   private messages = [];
   private connection;
-  @Input() private emitterType;
 
   constructor(private websocket: WebsocketService) { }
 
   private sendMessage(): void {
     this.websocket.send('message', {
-      emitterType: this.emitterType,
       type: 'text',
       payload: this.userInput
     });
