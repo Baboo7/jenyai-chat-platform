@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { WebsocketService } from '../../Services/websocket.service';
 
@@ -9,27 +9,13 @@ import { WebsocketService } from '../../Services/websocket.service';
 })
 export class StudentsListComponent {
 
-  private students = [];
-  private selectedStudent = '1';
-  private connection;
+  @Input() private students: [number];
+  @Input() private selectedStudent: number;
+  @Output() selectedStudentChange: EventEmitter<number> = new EventEmitter();
 
   constructor(private websocket: WebsocketService) { }
 
   selectStudent(id): void {
-    this.selectedStudent = id;
-  }
-
-  ngOnInit() {
-    this.connection = this.websocket.addListener('new-students').subscribe((data: any) => {
-      this.students = this.students.concat(data.students);
-    });
-
-    this.connection = this.websocket.addListener('del-student').subscribe((data: any) => {
-      this.students = this.students.filter(student => student != data.student);
-    });
-  }
-
-  ngOnDestroy() {
-    this.connection.unsubscribe();
+    this.selectedStudentChange.emit(this.students[id]);
   }
 }

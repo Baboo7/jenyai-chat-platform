@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { WebsocketService } from '../../Services/websocket.service';
 
@@ -7,20 +7,26 @@ import { WebsocketService } from '../../Services/websocket.service';
   templateUrl: 'chat.component.html',
   styleUrls: [ 'chat.component.scss' ]
 })
-export class ChatComponent implements OnInit, OnDestroy {
+export class ChatComponent {
 
   private userInput = '';
-  private messages = [];
-  private connection;
+  @Input() private recipient;
+  @Input() private messages;
+  @Output() messagesChange: EventEmitter<object[]> = new EventEmitter();
 
   constructor(private websocket: WebsocketService) { }
 
   private sendMessage(): void {
     this.websocket.send('message', {
+      recipient: this.recipient,
       type: 'text',
       payload: this.userInput
     });
-    this.messages.push({payload: this.userInput});
+    if (this.messages === undefined) {
+      this.messages = [];
+    }
+    this.messages.push({message: {payload: this.userInput}});
+    this.messagesChange.emit(this.messages);
     this.userInput = '';
   }
 
@@ -28,15 +34,5 @@ export class ChatComponent implements OnInit, OnDestroy {
     if (event.keyCode === 13) {
       this.sendMessage();
     }
-  }
-
-  ngOnInit() {
-    this.connection = this.websocket.addListener('message').subscribe(message => {
-      this.messages.push(message);
-    });
-  }
-
-  ngOnDestroy() {
-    this.connection.unsubscribe();
   }
 }

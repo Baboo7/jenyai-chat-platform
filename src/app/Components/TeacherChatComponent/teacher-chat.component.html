@@ -1,7 +1,7 @@
 <header></header>
 
 <div id="content">
-  <students-list></students-list>
+  <students-list [students]="students" [(selectedStudent)]="selectedStudent"></students-list>
 
-  <chat></chat>
+  <chat [(messages)]="messages[selectedStudent]" [recipient]="selectedStudent"></chat>
 </div>
