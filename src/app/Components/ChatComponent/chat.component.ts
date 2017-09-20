@@ -10,6 +10,7 @@ import { WebsocketService } from '../../Services/websocket.service';
 export class ChatComponent {
 
   private userInput = '';
+  @Input() private emitterType;
   @Input() private recipient;
   @Input() private messages;
   @Output() messagesChange: EventEmitter<object[]> = new EventEmitter();
@@ -25,7 +26,12 @@ export class ChatComponent {
     if (this.messages === undefined) {
       this.messages = [];
     }
-    this.messages.push({message: {payload: this.userInput}});
+    this.messages.push({
+      emitterType: this.emitterType,
+      message: {
+        payload: this.userInput
+      }
+    });
     this.messagesChange.emit(this.messages);
     this.userInput = '';
   }

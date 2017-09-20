@@ -3,5 +3,9 @@
 <div id="content">
   <students-list [students]="students" [(selectedStudent)]="selectedStudent"></students-list>
 
-  <chat [(messages)]="messages[selectedStudent]" [recipient]="selectedStudent"></chat>
+  <chat
+    [(messages)]="messages[selectedStudent]"
+    [recipient]="selectedStudent"
+    [emitterType]="emitterType">
+  </chat>
 </div>
