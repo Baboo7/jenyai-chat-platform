@@ -3,8 +3,7 @@
 </div>
 
 <div id="students-list">
-  <div class="student" *ngFor="let student of students; index as i" (click)="selectStudent(i)">
-    <span *ngIf="students[i] == selectedStudent">></span>
+  <div class="student" [class.active]="students[i] == selectedStudent" *ngFor="let student of students; index as i" (click)="selectStudent(i)">
     Student {{i + 1}}
   </div>
 </div>
