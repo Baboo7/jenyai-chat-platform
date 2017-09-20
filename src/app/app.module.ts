@@ -11,6 +11,7 @@ import { LandingPageComponent } from './Components/LandingPageComponent/landing-
 import { StudentChatComponent } from './Components/StudentChatComponent/student-chat.component';
 import { StudentsListComponent } from './Components/StudentsListComponent/students-list.component';
 import { TeacherChatComponent } from './Components/TeacherChatComponent/teacher-chat.component';
+import { TextMessageComponent } from './Components/TextMessageComponent/text-message.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TeacherChatComponent } from './Components/TeacherChatComponent/teacher-
     LandingPageComponent,
     StudentChatComponent,
     StudentsListComponent,
-    TeacherChatComponent
+    TeacherChatComponent,
+    TextMessageComponent
   ],
   imports: [
     BrowserModule,

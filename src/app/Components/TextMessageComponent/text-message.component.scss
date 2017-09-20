@@ -1,0 +1,29 @@
+@import '../../../styles/colors.scss';
+
+:host {
+  margin-top: 5px;
+  display: flex;
+
+  #container {
+    flex: 0 0 auto;
+    max-width: 80%;
+    box-sizing: padding-box;
+    word-wrap: break-word;
+    padding: 0.5em;
+    border-radius: 10px;
+
+    &[class*="right"] {
+      background-color: $color-1;
+      color: white;
+    }
+
+    &[class*="left"] {
+      background-color: $color-2;
+      color: white;
+    }
+  }
+
+  #filler {
+    flex-grow: 1;
+  }
+}
