@@ -5,13 +5,13 @@ import { HttpModule } from '@angular/http';
 import { RouterModule }   from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { ChatComponent } from './Components/ChatComponent/chat.component';
-import { HeaderComponent } from './Components/HeaderComponent/header.component';
-import { LandingPageComponent } from './Components/LandingPageComponent/landing-page.component';
-import { StudentChatComponent } from './Components/StudentChatComponent/student-chat.component';
-import { StudentsListComponent } from './Components/StudentsListComponent/students-list.component';
-import { TeacherChatComponent } from './Components/TeacherChatComponent/teacher-chat.component';
-import { TextMessageComponent } from './Components/TextMessageComponent/text-message.component';
+import { ChatComponent } from './components/chat/chat.component';
+import { HeaderComponent } from './components/header/header.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { StudentChatComponent } from './components/student-chat/student-chat.component';
+import { StudentsListComponent } from './components/students-list/students-list.component';
+import { TeacherChatComponent } from './components/teacher-chat/teacher-chat.component';
+import { TextMessageComponent } from './components/text-message/text-message.component';
 
 @NgModule({
   declarations: [

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { WebsocketService } from '../../Services/websocket.service';
+import { WebsocketService } from '../../services/websocket.service';
 
 @Component({
   selector: 'teacher-chat',
