@@ -12,6 +12,7 @@ import { StudentChatComponent } from './components/student-chat/student-chat.com
 import { StudentsListComponent } from './components/students-list/students-list.component';
 import { TeacherChatComponent } from './components/teacher-chat/teacher-chat.component';
 import { TextMessageComponent } from './components/text-message/text-message.component';
+import { TeacherPanelComponent } from './components/teacher-panel/teacher-panel.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TextMessageComponent } from './components/text-message/text-message.com
     StudentChatComponent,
     StudentsListComponent,
     TeacherChatComponent,
-    TextMessageComponent
+    TextMessageComponent,
+    TeacherPanelComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +38,10 @@ import { TextMessageComponent } from './components/text-message/text-message.com
         },
         {
           path: 'teacher',
+          component: TeacherPanelComponent
+        },
+        {
+          path: 'teacher/session',
           component: TeacherChatComponent
         },
         {
