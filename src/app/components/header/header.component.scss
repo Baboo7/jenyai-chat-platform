@@ -1,6 +1,7 @@
 @import '../../../styles/colors.scss';
 
 :host {
+  z-index: 100;
   background-color: white;
   flex: 0 0 auto;
   display: flex;
