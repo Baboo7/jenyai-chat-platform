@@ -43,7 +43,6 @@
       margin: auto;
       padding: 2em;
       @include border-radius-1(10px);
-
       @include display-flex();
       @include flex-flow-column();
       @include justify-content-center();

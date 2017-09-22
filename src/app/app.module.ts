@@ -9,6 +9,7 @@ import { ChatComponent } from './components/chat/chat.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { StudentChatComponent } from './components/student-chat/student-chat.component';
+import { StudentPanelComponent } from './components/student-panel/student-panel.component';
 import { StudentsListComponent } from './components/students-list/students-list.component';
 import { TeacherChatComponent } from './components/teacher-chat/teacher-chat.component';
 import { TextMessageComponent } from './components/text-message/text-message.component';
@@ -21,6 +22,7 @@ import { TeacherPanelComponent } from './components/teacher-panel/teacher-panel.
     HeaderComponent,
     LandingPageComponent,
     StudentChatComponent,
+    StudentPanelComponent,
     StudentsListComponent,
     TeacherChatComponent,
     TextMessageComponent,
@@ -34,6 +36,10 @@ import { TeacherPanelComponent } from './components/teacher-panel/teacher-panel.
       [
         {
           path: 'student',
+          component: StudentPanelComponent
+        },
+        {
+          path: 'student/session',
           component: StudentChatComponent
         },
         {
