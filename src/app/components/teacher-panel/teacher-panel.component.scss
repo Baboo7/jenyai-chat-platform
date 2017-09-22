@@ -1,17 +1,15 @@
 @import '../../../styles/colors.scss';
+@import '../../../styles/mixins.scss';
 
 :host {
-  flex-grow: 1;
-
-  display: flex;
-  flex-direction: column;
+  @include flex-grow(1);
+  @include display-flex();
+  @include flex-flow-column();
 
   button {
     padding: 1.5em 6em;
     cursor: pointer;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+    @include border-radius-1(5px);
     border-width: 2px;
     border-style: solid;
     font-weight: bold;
@@ -30,31 +28,58 @@
   }
 
   #body {
-    background-image: url('../../../assets/kids.jpg');
+    background-image: url('../../../assets/background-1.jpg');
     background-size: cover;
-    background-position: bottom;
+    background-position: center;
     background-repeat: no-repeat;
 
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    @include flex-grow(1);
+    @include display-flex();
+    @include flex-flow-column();
+    @include justify-content-center();
 
-    & h1 {
-      font-size: 3em;
-    }
-
-    #call-to-action {
-      display: flex;
-      justify-content: center;
-      padding: 1em;
-    }
-
-    .quote {
+    > div {
+      background-color: $color-1;
+      margin: auto;
       padding: 2em;
-      color: #FFFFFF;
-      text-align: center;
-      font-style: italic;
+      @include border-radius-1(10px);
+
+      @include display-flex();
+      @include flex-flow-column();
+      @include justify-content-center();
+
+      #inputs {
+        @include display-flex();
+        @include flex-flow-column();
+        @include justify-content-center();
+        padding: 1em;
+
+        > div {
+          @include display-flex();
+          @include flex-flow-column();
+          margin-bottom: 1em;
+
+          label {
+            @include flex-grow(1);
+            margin-bottom: 0.5em;
+            color: white;
+          }
+
+          input {
+            @include flex-grow(1);
+            padding: 1em;
+
+            @include border-radius-1(5px);
+            border: 1px solid rgba(0,0,0,0.3);
+          }
+        }
+      }
+
+      #call-to-action {
+        @include display-flex();
+        @include justify-content-center();
+        padding: 1em;
+      }
     }
   }
 }

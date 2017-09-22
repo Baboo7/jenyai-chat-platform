@@ -1,0 +1,101 @@
+@mixin display-flex () {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@mixin flex-flow-column () {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-flow: column;
+  -ms-flex-flow: column;
+  flex-flow: column;
+}
+
+@mixin flex-flow-row () {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-flow: row;
+  -ms-flex-flow: row;
+  flex-flow: row;
+}
+
+@mixin flex-flow-wrap () {
+  -webkit-flex-flow: wrap;
+  -ms-flex-flow: wrap;
+  flex-flow: wrap;
+}
+
+@mixin justify-content-center () {
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+@mixin justify-content-space-between () {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+@mixin align-items-center () {
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+@mixin flex-grow ($g) {
+  -webkit-box-flex: $g;
+  -webkit-flex-grow: $g;
+  -ms-flex-positive: $g;
+  flex-grow: $g;
+  min-height: 0;
+}
+
+@mixin flex ($g, $s, $b) {
+  -webkit-box-flex: $g;
+  -webkit-flex: $g $s $b;
+  -ms-flex: $g $s $b;
+  flex: $g $s $b;
+  min-height: 0;
+}
+
+@mixin linear-gradient ($color1, $color2) {
+  background: -webkit-linear-gradient($color1, $color2); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient($color1, $color2); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient($color1, $color2); /* For Firefox 3.6 to 15 */
+  background: linear-gradient($color1, $color2); /* Standard syntax (must be last) */
+}
+
+@mixin border-radius-1 ($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin border-radius-4 ($r1, $r2, $r3, $r4) {
+  -webkit-border-radius: $r1 $r2 $r3 $r4;
+  -moz-border-radius: $r1 $r2 $r3 $r4;
+  -ms-border-radius: $r1 $r2 $r3 $r4;
+  border-radius: $r1 $r2 $r3 $r4;
+}
+
+@mixin animation ($name, $dur, $delay, $ease, $count) {
+  /* Safari 4.0 - 8.0 */
+  -webkit-animation-name: $name;
+  -webkit-animation-duration: $dur;
+  -webkit-animation-delay: $delay;
+  -webkit-animation-timing-function: $ease;
+  -webkit-animation-iteration-count: $count;
+  /* Standard syntax */
+  animation-name: $name;
+  animation-duration: $dur;
+  animation-delay: $delay;
+  animation-timing-function: $ease;
+  animation-iteration-count: $count;
+}
