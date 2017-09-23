@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 
 import { WebsocketService } from '../../services/websocket.service';
 
@@ -12,10 +12,11 @@ export class StudentChatComponent implements OnInit, OnDestroy {
   private connection;
   private emitterType = 'student';
   private messages = [ ];
+  @Input() private name: string;
+  @Input() private roomId: string;
 
   constructor(private websocket: WebsocketService) {
     this.websocket.connect();
-    this.websocket.send('init', {emitterType: this.emitterType});
   }
 
   ngOnInit() {
@@ -23,6 +24,15 @@ export class StudentChatComponent implements OnInit, OnDestroy {
       message.emitterType = 'teacher';
       this.messages.push(message);
     });
+
+    this.websocket.send(
+      'init',
+      {
+        emitterType: this.emitterType,
+        name: this.name,
+        roomId: this.roomId
+      }
+    );
   }
 
   ngOnDestroy() {

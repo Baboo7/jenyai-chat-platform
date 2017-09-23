@@ -9,16 +9,11 @@ export class WebsocketService {
 
   private url = 'http://localhost:8080';
   private socket;
-  private id;
 
   constructor() { }
 
   connect() {
     this.socket = io(this.url);
-
-    this.socket.on('set-id', data => {
-      this.id = data.id;
-    })
   }
 
   disconnect() {
