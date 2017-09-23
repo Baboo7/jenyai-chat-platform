@@ -9,11 +9,11 @@ import { ChatComponent } from './components/chat/chat.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { StudentChatComponent } from './components/student-chat/student-chat.component';
-import { StudentPanelComponent } from './components/student-panel/student-panel.component';
+import { StudentLoginComponent } from './components/student-login/student-login.component';
 import { StudentsListComponent } from './components/students-list/students-list.component';
 import { TeacherChatComponent } from './components/teacher-chat/teacher-chat.component';
 import { TextMessageComponent } from './components/text-message/text-message.component';
-import { TeacherPanelComponent } from './components/teacher-panel/teacher-panel.component';
+import { TeacherLoginComponent } from './components/teacher-login/teacher-login.component';
 
 @NgModule({
   declarations: [
@@ -22,11 +22,11 @@ import { TeacherPanelComponent } from './components/teacher-panel/teacher-panel.
     HeaderComponent,
     LandingPageComponent,
     StudentChatComponent,
-    StudentPanelComponent,
+    StudentLoginComponent,
     StudentsListComponent,
     TeacherChatComponent,
     TextMessageComponent,
-    TeacherPanelComponent
+    TeacherLoginComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +36,7 @@ import { TeacherPanelComponent } from './components/teacher-panel/teacher-panel.
       [
         {
           path: 'student',
-          component: StudentPanelComponent
+          component: StudentLoginComponent
         },
         {
           path: 'student/session',
@@ -44,7 +44,7 @@ import { TeacherPanelComponent } from './components/teacher-panel/teacher-panel.
         },
         {
           path: 'teacher',
-          component: TeacherPanelComponent
+          component: TeacherLoginComponent
         },
         {
           path: 'teacher/session',
