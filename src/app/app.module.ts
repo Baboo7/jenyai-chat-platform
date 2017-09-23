@@ -11,6 +11,7 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { StudentChatComponent } from './components/student-chat/student-chat.component';
 import { StudentLoginComponent } from './components/student-login/student-login.component';
 import { StudentsListComponent } from './components/students-list/students-list.component';
+import { StudentSpaceComponent } from './components/student-space/student-space.component';
 import { TeacherChatComponent } from './components/teacher-chat/teacher-chat.component';
 import { TextMessageComponent } from './components/text-message/text-message.component';
 import { TeacherLoginComponent } from './components/teacher-login/teacher-login.component';
@@ -24,6 +25,7 @@ import { TeacherLoginComponent } from './components/teacher-login/teacher-login.
     StudentChatComponent,
     StudentLoginComponent,
     StudentsListComponent,
+    StudentSpaceComponent,
     TeacherChatComponent,
     TextMessageComponent,
     TeacherLoginComponent
@@ -36,11 +38,7 @@ import { TeacherLoginComponent } from './components/teacher-login/teacher-login.
       [
         {
           path: 'student',
-          component: StudentLoginComponent
-        },
-        {
-          path: 'student/session',
-          component: StudentChatComponent
+          component: StudentSpaceComponent
         },
         {
           path: 'teacher',
