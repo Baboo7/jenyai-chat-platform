@@ -5,8 +5,7 @@ import { WebsocketService } from '../../services/websocket.service';
 @Component({
   selector: 'student-chat',
   templateUrl: './student-chat.component.html',
-  styleUrls: [ './student-chat.component.scss' ],
-  providers: [ WebsocketService ]
+  styleUrls: [ './student-chat.component.scss' ]
 })
 export class StudentChatComponent implements OnInit, OnDestroy {
 
@@ -15,6 +14,7 @@ export class StudentChatComponent implements OnInit, OnDestroy {
   private messages = [ ];
 
   constructor(private websocket: WebsocketService) {
+    this.websocket.connect();
     this.websocket.send('init', {emitterType: this.emitterType});
   }
 
@@ -27,5 +27,6 @@ export class StudentChatComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.connection.unsubscribe();
+    this.websocket.disconnect();
   }
 }

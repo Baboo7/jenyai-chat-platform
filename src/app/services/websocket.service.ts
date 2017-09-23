@@ -11,12 +11,22 @@ export class WebsocketService {
   private socket;
   private id;
 
-  constructor() {
+  constructor() { }
+
+  connect() {
     this.socket = io(this.url);
 
     this.socket.on('set-id', data => {
       this.id = data.id;
     })
+  }
+
+  disconnect() {
+    this.socket.disconnect();
+  }
+
+  send(event, obj): void {
+    this.socket.emit(event, obj);
   }
 
   addListener(event) {
@@ -29,13 +39,5 @@ export class WebsocketService {
       };
     })
     return observable;
-  }
-
-  send(event, obj): void {
-    this.socket.emit(event, obj);
-  }
-
-  getUuid() {
-    return this.id;
   }
 }
