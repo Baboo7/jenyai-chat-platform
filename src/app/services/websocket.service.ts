@@ -9,15 +9,23 @@ export class WebsocketService {
 
   private url = 'http://localhost:8080';
   private socket;
+  private connections: number = 0;
 
   constructor() { }
 
   connect() {
-    this.socket = io(this.url);
+    this.connections++;
+    if (this.socket === undefined) {
+      this.socket = io(this.url);
+    }
   }
 
   disconnect() {
-    this.socket.disconnect();
+    this.connections--;
+    if (this.connections <= 0) {
+      this.connections = 0;
+      this.socket.disconnect();
+    }
   }
 
   send(event, obj): void {
