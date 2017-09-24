@@ -25,7 +25,7 @@ export class TeacherLoginComponent {
       return;
     }
 
-    this.http.get(`http://localhost:8080/classroom/${this.roomId}`).subscribe(
+    this.http.post(`http://localhost:8080/classroom/${this.roomId}`, { password: this.password }).subscribe(
       data => {
         if(data['success']) {
           this.nameChange.emit(this.name);
