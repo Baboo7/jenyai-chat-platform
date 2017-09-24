@@ -1,6 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+import Utils from '../../utils';
+
 @Component({
   selector: 'teacher-login',
   templateUrl: './teacher-login.component.html',
@@ -19,6 +21,10 @@ export class TeacherLoginComponent {
   constructor(private http: HttpClient) { }
 
   joinSession(): void {
+    if (Utils.isEmpty(this.name) || Utils.isEmpty(this.roomId) || Utils.isEmpty(this.password)) {
+      return;
+    }
+
     this.http.get(`http://localhost:8080/classroom/${this.roomId}`).subscribe(
       data => {
         if(data['success']) {

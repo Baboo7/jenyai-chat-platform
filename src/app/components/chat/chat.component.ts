@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { WebsocketService } from '../../services/websocket.service';
+import Utils from '../../utils';
 
 @Component({
   selector: 'chat',
@@ -18,6 +19,10 @@ export class ChatComponent {
   constructor(private websocket: WebsocketService) { }
 
   private sendMessage(): void {
+    if (Utils.isEmpty(this.userInput)) {
+      return;
+    }
+    
     this.websocket.send('message', {
       recipient: this.recipient,
       type: 'text',
