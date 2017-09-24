@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input } from '@angular/core';
 
 import { WebsocketService } from '../../services/websocket.service';
 import Utils from '../../utils';
@@ -14,7 +14,6 @@ export class ChatComponent {
   @Input() private emitterType;
   @Input() private recipient;
   @Input() private messages;
-  @Output() messagesChange: EventEmitter<object[]> = new EventEmitter();
 
   constructor(private websocket: WebsocketService) { }
 
@@ -22,22 +21,12 @@ export class ChatComponent {
     if (Utils.isEmpty(this.userInput)) {
       return;
     }
-    
+
     this.websocket.send('message', {
       recipient: this.recipient,
       type: 'text',
       payload: this.userInput
     });
-    if (this.messages === undefined) {
-      this.messages = [];
-    }
-    this.messages.push({
-      emitterType: this.emitterType,
-      message: {
-        payload: this.userInput
-      }
-    });
-    this.messagesChange.emit(this.messages);
     this.userInput = '';
   }
 

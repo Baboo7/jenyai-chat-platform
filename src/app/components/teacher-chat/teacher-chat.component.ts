@@ -23,8 +23,8 @@ export class TeacherChatComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.connection = this.websocket.addListener('message').subscribe((message: any) => {
-      message.emitterType = 'student';
-      this.messages[message.emitter].push(message);
+      let emitter = message.emitterType === 'student' ? message.emitter : message.recipient;
+      this.messages[emitter].push(message);
     });
 
     this.connection = this.websocket.addListener('new-students').subscribe((data: any) => {
