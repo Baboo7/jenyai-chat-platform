@@ -15,6 +15,7 @@ import { StudentSpaceComponent } from './components/student-space/student-space.
 import { TeacherChatComponent } from './components/teacher-chat/teacher-chat.component';
 import { TextMessageComponent } from './components/text-message/text-message.component';
 import { TeacherLoginComponent } from './components/teacher-login/teacher-login.component';
+import { TeacherSpaceComponent } from './components/teacher-space/teacher-space.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { TeacherLoginComponent } from './components/teacher-login/teacher-login.
     StudentSpaceComponent,
     TeacherChatComponent,
     TextMessageComponent,
-    TeacherLoginComponent
+    TeacherLoginComponent,
+    TeacherSpaceComponent
   ],
   imports: [
     BrowserModule,
@@ -42,11 +44,7 @@ import { TeacherLoginComponent } from './components/teacher-login/teacher-login.
         },
         {
           path: 'teacher',
-          component: TeacherLoginComponent
-        },
-        {
-          path: 'teacher/session',
-          component: TeacherChatComponent
+          component: TeacherSpaceComponent
         },
         {
           path: '',

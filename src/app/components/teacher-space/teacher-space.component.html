@@ -1,0 +1,14 @@
+<teacher-login
+  *ngIf="connected == false"
+
+  [(connected)]="connected"
+  [(name)]="name"
+  [(roomId)]="roomId">
+</teacher-login>
+
+<teacher-chat
+  *ngIf="connected == true"
+
+  [name]="name"
+  [roomId]="roomId">
+</teacher-chat>

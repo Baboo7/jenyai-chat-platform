@@ -1,13 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'teacher-login',
   templateUrl: './teacher-login.component.html',
   styleUrls: ['./teacher-login.component.scss']
 })
-export class TeacherLoginComponent implements OnInit {
+export class TeacherLoginComponent {
 
-  constructor() { }
+  @Input() private name: string;
+  @Input() private roomId: string;
+  @Input() private password: string;
+  @Input() private connected: boolean;
+  @Output() private nameChange: EventEmitter<string> = new EventEmitter();
+  @Output() private roomIdChange: EventEmitter<string> = new EventEmitter();
+  @Output() private connectedChange: EventEmitter<boolean> = new EventEmitter();
 
-  ngOnInit() { }
+  constructor(private http: HttpClient) { }
+
+  joinSession(): void {
+    this.http.get(`http://localhost:8080/classroom/${this.roomId}`).subscribe(
+      data => {
+        if(data['success']) {
+          this.nameChange.emit(this.name);
+          this.roomIdChange.emit(this.roomId);
+          this.connectedChange.emit(true);
+        }
+      },
+      err => { }
+    );
+  }
 }

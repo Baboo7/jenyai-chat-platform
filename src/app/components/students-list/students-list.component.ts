@@ -9,13 +9,13 @@ import { WebsocketService } from '../../services/websocket.service';
 })
 export class StudentsListComponent {
 
-  @Input() private students: [number];
+  @Input() private students;
   @Input() private selectedStudent: number;
   @Output() selectedStudentChange: EventEmitter<number> = new EventEmitter();
 
   constructor(private websocket: WebsocketService) { }
 
   selectStudent(id): void {
-    this.selectedStudentChange.emit(this.students[id]);
+    this.selectedStudentChange.emit(this.students[id].id);
   }
 }
