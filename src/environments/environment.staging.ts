@@ -6,6 +6,6 @@
 import { api } from './api';
 
 export const environment = {
-  api: api('http://localhost:8080/'),
+  api: api('https://staging-nellyana.herokuapp.com/'),
   production: false
 };

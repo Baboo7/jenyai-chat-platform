@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import Utils from '../../utils';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'student-login',
@@ -24,7 +25,7 @@ export class StudentLoginComponent {
       return;
     }
 
-    this.http.get(`http://localhost:8080/classroom/${this.roomId}`).subscribe(
+    this.http.get(`${environment.api.classroom}${this.roomId}`).subscribe(
       data => {
         if(data['success']) {
           this.nameChange.emit(this.name);

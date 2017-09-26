@@ -4,10 +4,11 @@ import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 import * as io from 'socket.io-client';
 
+import { environment } from '../../environments/environment';
+
 @Injectable()
 export class WebsocketService {
 
-  private url = 'http://localhost:8080';
   private socket;
   private connections: number = 0;
 
@@ -16,7 +17,7 @@ export class WebsocketService {
   connect() {
     this.connections++;
     if (this.socket === undefined) {
-      this.socket = io(this.url);
+      this.socket = io(environment.api.baseUrl);
     }
   }
 
