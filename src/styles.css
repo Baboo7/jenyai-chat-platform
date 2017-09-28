@@ -1,7 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 
+@font-face {
+    font-family: arialRounded;
+    src: url('./assets/fonts/arialRounded.ttf');
+}
+
 * {
-  font-family: Tahoma, sans-serif;
+  font-family: arialRounded;
 }
 
 body {

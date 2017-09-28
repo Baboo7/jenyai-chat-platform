@@ -1,5 +1,61 @@
-$color-1: #584AA4;
+/* https://coolors.co/app/a49e8d-b8d8d8-a1d2ce-7fb7be-504136 */
 
-$color-2: #EDB658;
-$color-2-l: #FFD182;
-$color-2-xl: #FFE1AD;
+$color-1: rgba(164, 158, 141, 1);
+$color-2: rgba(184, 216, 216, 1);
+$color-3: rgba(161, 210, 206, 1);
+$color-4: rgba(127, 183, 190, 1);
+$color-5: rgba(80, 65, 54, 1);
+
+$color-1-xl: rgba(238, 237, 234, 1);
+$color-2-xl: rgba(242, 247, 247, 1);
+$color-3-xl: rgba(237, 246, 246, 1);
+$color-4-xl: rgba(231, 241, 243, 1);
+$color-5-xl: rgba(223, 220, 218, 1);
+
+.color-1 {
+  color: $color-1;
+}
+.color-2 {
+  color: $color-2;
+}
+.color-3 {
+  color: $color-3;
+}
+.color-4 {
+  color: $color-4;
+}
+.color-5 {
+  color: $color-5;
+}
+
+.background-color-1 {
+  background-color: $color-1;
+}
+.background-color-2 {
+  background-color: $color-2;
+}
+.background-color-3 {
+  background-color: $color-3;
+}
+.background-color-4 {
+  background-color: $color-4;
+}
+.background-color-5 {
+  background-color: $color-5;
+}
+
+.background-color-1-xl {
+  background-color: $color-1-xl;
+}
+.background-color-2-xl {
+  background-color: $color-2-xl;
+}
+.background-color-3-xl {
+  background-color: $color-3-xl;
+}
+.background-color-4-xl {
+  background-color: $color-4-xl;
+}
+.background-color-5-xl {
+  background-color: $color-5-xl;
+}

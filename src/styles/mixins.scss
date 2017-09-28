@@ -34,11 +34,10 @@
   justify-content: center;
 }
 
-@mixin justify-content-space-between () {
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+@mixin justify-content-space-around () {
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
 }
 
 @mixin align-items-center () {
