@@ -12,7 +12,7 @@ export class TeacherChatComponent implements OnInit, OnDestroy {
   private connection;
   private emitterType = 'teacher';
   private messages = { };
-  private students = [];
+  private students = [ ];
   private selectedStudent;
   @Input() private name: string;
   @Input() private roomId: string;
@@ -27,11 +27,9 @@ export class TeacherChatComponent implements OnInit, OnDestroy {
       this.messages[emitter].push(message);
     });
 
-    this.connection = this.websocket.addListener('new-students').subscribe((data: any) => {
-      this.students = this.students.concat(data.students);
-      data.students.forEach((student) => {
-        this.messages[student.id] = [];
-      });
+    this.connection = this.websocket.addListener('new-student').subscribe((data: any) => {
+      this.students.push(data.student);
+      this.messages[data.student.id] = data.messages;
     });
 
     this.connection = this.websocket.addListener('del-student').subscribe((data: any) => {
