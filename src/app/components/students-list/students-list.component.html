@@ -1,14 +1,16 @@
-<div id="title">
-  <h3>Connected students</h3>
-</div>
+<div id="students-section">
+  <div id="title">
+    <div class="bubble-title">Connected students</div>
+  </div>
 
-<div id="students-list">
-  <div
-    (click)="selectStudent(i)"
-    class="student"
-    *ngFor="let student of students; index as i"
-    [class.active]="students[i]['id'] == selectedStudent" >
+  <div class="list">
+    <div
+      (click)="selectStudent(i)"
+      class="item"
+      *ngFor="let student of students; index as i"
+      [class.active]="students[i]['id'] == selectedStudent" >
 
-    {{ student.name }}
+      {{ student.name }}
+    </div>
   </div>
 </div>

@@ -1,16 +1,19 @@
-/* https://coolors.co/app/a49e8d-b8d8d8-a1d2ce-7fb7be-504136 */
+/* v1: https://coolors.co/app/a49e8d-b8d8d8-a1d2ce-7fb7be-504136 */
+/* v2: https://coolors.co/feb04e-c4e6ff-24a7ff-7fb7be-504136 */
 
-$color-1: rgba(164, 158, 141, 1);
-$color-2: rgba(184, 216, 216, 1);
-$color-3: rgba(161, 210, 206, 1);
+$color-1: #FEB04E;
+$color-2: #C4E6FF;
+$color-3: #24A7FF;
 $color-4: rgba(127, 183, 190, 1);
 $color-5: rgba(80, 65, 54, 1);
 
-$color-1-xl: rgba(238, 237, 234, 1);
-$color-2-xl: rgba(242, 247, 247, 1);
-$color-3-xl: rgba(237, 246, 246, 1);
+$color-1-xl: #FEF0DE;
+$color-2-xl: #F4FAFF;
+$color-3-xl: #D7EFFF;
 $color-4-xl: rgba(231, 241, 243, 1);
 $color-5-xl: rgba(223, 220, 218, 1);
+
+$grey: rgba(0,0,0,0.2);
 
 .color-1 {
   color: $color-1;

@@ -84,6 +84,12 @@
   border-radius: $r1 $r2 $r3 $r4;
 }
 
+@mixin box-shadow ($h, $v, $blur, $color) {
+  -webkit-box-shadow: $h $v $blur $color;
+  -moz-box-shadow: $h $v $blur $color;
+  box-shadow: $h $v $blur $color;
+}
+
 @mixin animation ($name, $dur, $delay, $ease, $count) {
   /* Safari 4.0 - 8.0 */
   -webkit-animation-name: $name;
