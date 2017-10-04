@@ -6,7 +6,8 @@ import { Parser } from '../../message-parser';
 @Component({
   selector: 'teacher-chat',
   templateUrl: './teacher-chat.component.html',
-  styleUrls: [ './teacher-chat.component.scss' ]
+  styleUrls: [ './teacher-chat.component.scss' ],
+  providers: [ WebsocketService ]
 })
 export class TeacherChatComponent implements OnInit, OnDestroy {
 
