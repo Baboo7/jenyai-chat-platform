@@ -12,7 +12,8 @@ import { Parser } from '../../message-parser';
 export class StudentChatComponent implements OnInit, OnDestroy {
 
   private connection;
-  private emitterType = 'student';
+  private emitterType: string = 'student';
+  private id: string;
   private messages = [ ];
   @Input() private name: string;
   @Input() private roomId: string;
@@ -22,8 +23,12 @@ export class StudentChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.connection = this.websocket.addListener('init').subscribe((data: any) => {
+      this.id = data.id;
+    });
+
     this.connection = this.websocket.addListener('message').subscribe((data: any) => {
-      let msg = Parser.format(data, this.emitterType);
+      let msg = Parser.format(data, this.id);
       if (msg !== null) { this.messages.push(msg); }
     });
 
