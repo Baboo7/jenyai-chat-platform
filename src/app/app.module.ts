@@ -13,7 +13,7 @@ import { StudentLoginComponent } from './components/student-login/student-login.
 import { StudentsListComponent } from './components/students-list/students-list.component';
 import { StudentSpaceComponent } from './components/student-space/student-space.component';
 import { TeacherChatComponent } from './components/teacher-chat/teacher-chat.component';
-import { TextMessageComponent } from './components/text-message/text-message.component';
+import { TextComponent } from './components/chat/messages/text/text.component';
 import { TeacherLoginComponent } from './components/teacher-login/teacher-login.component';
 import { TeacherSpaceComponent } from './components/teacher-space/teacher-space.component';
 
@@ -28,7 +28,7 @@ import { TeacherSpaceComponent } from './components/teacher-space/teacher-space.
     StudentsListComponent,
     StudentSpaceComponent,
     TeacherChatComponent,
-    TextMessageComponent,
+    TextComponent,
     TeacherLoginComponent,
     TeacherSpaceComponent
   ],

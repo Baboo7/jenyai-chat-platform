@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 
 import { WebsocketService } from '../../services/websocket.service';
+import { Parser } from '../../message-parser';
 
 @Component({
   selector: 'student-chat',
@@ -20,8 +21,9 @@ export class StudentChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.connection = this.websocket.addListener('message').subscribe((message: any) => {
-      this.messages.push(message);
+    this.connection = this.websocket.addListener('message').subscribe((data: any) => {
+      let msg = Parser.format(data, this.emitterType);
+      if (msg !== null) { this.messages.push(msg); }
     });
 
     this.websocket.send(

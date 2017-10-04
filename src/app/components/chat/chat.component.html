@@ -1,7 +1,6 @@
 <div id="conversation-container">
-  <div *ngFor="let m of messages">
-    <text-message *ngIf="m.emitterType == emitterType" [align]="'right'" [text]="m.message.payload"></text-message>
-    <text-message *ngIf="m.emitterType != emitterType" [align]="'left'" [text]="m.message.payload"></text-message>
+  <div *ngFor="let msg of messages">
+    <text *ngIf="msg.type === 'text'" [align]="msg.align" [text]="msg.text"></text>
   </div>
 </div>
 
