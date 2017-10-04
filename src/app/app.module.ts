@@ -16,6 +16,9 @@ import { TeacherChatComponent } from './components/teacher-chat/teacher-chat.com
 import { TextComponent } from './components/chat/messages/text/text.component';
 import { TeacherLoginComponent } from './components/teacher-login/teacher-login.component';
 import { TeacherSpaceComponent } from './components/teacher-space/teacher-space.component';
+import { VideoComponent } from './components/chat/messages/video/video.component';
+
+import { SafePipe } from './pipes/safe.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,10 @@ import { TeacherSpaceComponent } from './components/teacher-space/teacher-space.
     TeacherChatComponent,
     TextComponent,
     TeacherLoginComponent,
-    TeacherSpaceComponent
+    TeacherSpaceComponent,
+    VideoComponent,
+
+    SafePipe
   ],
   imports: [
     BrowserModule,

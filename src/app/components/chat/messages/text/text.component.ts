@@ -1,9 +1,9 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'text',
+  selector: 'text-message',
   templateUrl: './text.component.html',
-  styleUrls: [ 'text.component.scss' ]
+  styleUrls: [ './text.component.scss' ]
 })
 export class TextComponent {
   @Input() align: string;
