@@ -1,16 +1,13 @@
 <div id="students-section">
-  <div id="title">
+  <div>
     <div class="bubble-title">Connected students</div>
   </div>
 
   <div class="list">
-    <div
-      (click)="selectStudent(i)"
-      class="item"
-      *ngFor="let student of students; index as i"
-      [class.active]="students[i]['id'] == selectedStudent" >
-
-      {{ student.name }}
+    <div class="item-container" *ngFor="let student of students; index as i" >
+      <div class="item" [class.active]="students[i]['id'] == selectedStudent" (click)="selectStudent(i)"> {{ student.name }} </div>
+      <div *ngIf="student.unseen > 0" class="badge-unseen"> {{ student.unseen }} </div>
+      <div *ngIf="student.unseen == 0" class="badge-uptodate"> </div>
     </div>
   </div>
 </div>

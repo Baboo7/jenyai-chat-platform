@@ -16,7 +16,7 @@ export class TeacherChatComponent implements OnInit, OnDestroy {
   private id: string;
   private messages = { };
   private students = [ ];
-  private selectedStudent;
+  private selectedStudent: string;
   @Input() private name: string;
   @Input() private roomId: string;
 
@@ -30,21 +30,15 @@ export class TeacherChatComponent implements OnInit, OnDestroy {
     });
 
     this.connection = this.websocket.addListener('message').subscribe((data: any) => {
-      let msg = Parser.format(data, this.id);
-      if (msg !== null) {
-        let emitterId = msg.emitterType === 'student' ? msg.emitter : msg.recipient;
-        this.messages[emitterId].push(msg);
-      }
+      this.addMessage(data);
     });
 
     this.connection = this.websocket.addListener('new-student').subscribe((data: any) => {
+      data.student.unseen = 0;
       this.students.push(data.student);
       this.messages[data.student.id] = [];
       data.messages.forEach(message => {
-        let msg = Parser.format(message, this.id);
-        if (msg !== null) {
-          this.messages[data.student.id].push(msg);
-        }
+        this.addMessage(message);
       });
     });
 
@@ -66,5 +60,28 @@ export class TeacherChatComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.connection.unsubscribe();
     this.websocket.disconnect();
+  }
+
+  onSelectedStudent(studentId: string): void {
+    this.selectedStudent = studentId;
+    let student = this.students.find(s => s.id === this.selectedStudent);
+    if (student) {
+      student.unseen = 0;
+    }
+  }
+
+  addMessage(message): void {
+    let msg = Parser.format(message, this.id);
+    if (msg !== null) {
+      let emitterId = msg.emitterType === 'student' ? msg.emitter : msg.recipient;
+      this.messages[emitterId].push(msg);
+
+      if (emitterId !== this.selectedStudent) {
+        let student = this.students.find(s => s.id === emitterId);
+        if (student) {
+          student.unseen++;
+        }
+      }
+    }
   }
 }

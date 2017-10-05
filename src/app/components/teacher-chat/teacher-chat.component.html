@@ -3,7 +3,8 @@
 <div id="content">
   <students-list
     [students]="students"
-    [(selectedStudent)]="selectedStudent">
+    [selectedStudent]="selectedStudent"
+    (selectedStudentChange)="onSelectedStudent($event)">
   </students-list>
 
   <chat

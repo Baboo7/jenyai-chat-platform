@@ -11,8 +11,8 @@ export class StudentsListComponent implements OnInit, OnDestroy {
 
   private connection;
   @Input() private students;
-  @Input() private selectedStudent: number;
-  @Output() selectedStudentChange: EventEmitter<number> = new EventEmitter();
+  @Input() private selectedStudent: string;
+  @Output() selectedStudentChange: EventEmitter<string> = new EventEmitter();
 
   constructor(private websocket: WebsocketService) {
     this.websocket.connect();

@@ -3,12 +3,10 @@
 
 .bubble {
   background-color: white;
-  margin-top: 0.5em;
   padding: 1em;
   word-wrap: break-word;
   @include border-radius-1 (5px);
   text-align: center;
-
 }
 
 .bubble-title {
@@ -29,8 +27,15 @@
   overflow: auto;
 }
 
+.item-container {
+  @include display-flex();
+  @include align-items-center();
+  margin-top: 0.5em;
+}
+
 .item {
   @extend .bubble;
+  @include flex-grow(1);
 
   &[class*="active"] {
     background-color: $color-1;
@@ -43,6 +48,28 @@
   }
 }
 
+.badge-abstract {
+  $badge-size: 36;
+  background-color: white;
+  margin-left: 0.5em;
+  width: #{$badge-size}px;
+  height: #{$badge-size}px;
+  @include border-radius-1 (#{$badge-size/2}px);
+  @include display-flex();
+  @include align-items-center();
+  @include justify-content-center();
+}
+
+.badge-uptodate {
+  @extend .badge-abstract;
+  background-color: $green;
+}
+
+.badge-unseen {
+  @extend .badge-abstract;
+  background-color: $red;
+}
+
 :host {
   padding: 1em;
   background-color: $color-2;
@@ -53,11 +80,5 @@
 
   #students-section {
     @extend .section;
-    height: 66%;
-  }
-
-  #teachers-section {
-    @extend .section;
-    height: 33%;
   }
 }
