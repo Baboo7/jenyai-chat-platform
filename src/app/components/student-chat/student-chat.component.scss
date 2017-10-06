@@ -1,6 +1,7 @@
-:host {
-  flex-grow: 1;
+@import '../../../styles/mixins.scss';
 
-  display: flex;
-  flex-direction: column;
+:host {
+  height: 100vh;
+  @include display-flex();
+  @include flex-flow-column();
 }

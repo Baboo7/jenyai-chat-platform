@@ -2,7 +2,7 @@
 @import '../../../styles/mixins.scss';
 
 :host {
-  @include flex-grow(1);
+  height: 100vh;
   @include display-flex();
   @include flex-flow-column();
 
