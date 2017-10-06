@@ -1,7 +1,9 @@
 @import "../../../styles/colors.scss";
+@import "../../../styles/metrics.scss";
 @import "../../../styles/mixins.scss";
 
 section {
+  position: relative;
   padding: 4em 0;
 }
 
@@ -18,7 +20,7 @@ p {
 }
 
 button {
-  background-color: none;
+  background-color: rgba(0,0,0,0);
   padding: 1.5em 6em;
   cursor: pointer;
   @include border-radius-1(5px);
@@ -33,6 +35,7 @@ button {
   }
 
   &:hover {
+    background-color: $white;
     color: $color-1;
   }
 }
@@ -40,7 +43,7 @@ button {
 div[class*='content'] {
   width: 60%;
   margin: 0 auto;
-  padding: 5px;
+  padding: 5px 0;
 }
 
 div[class*='row'] {
@@ -62,32 +65,48 @@ img {
   max-width: 300px;
 }
 
-#banner {
-  background-image: url('../../../assets/background-2.jpg');
+.background-abst {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -100;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+#banner {
   padding: 30vh 0;
+
+  .background {
+    @extend .background-abst;
+    background-image: url('../../../assets/background-2.jpg');
+    @include filter-contrast(50%);
+  }
 }
 
 #accessibility {
-  background-image: url('../../../assets/background-3.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  .background {
+    @extend .background-abst;
+    background-image: url('../../../assets/background-3.jpg');
+    @include filter-brightness(40%);
+  }
 }
 
 #statistics {
-  background-image: url('../../../assets/background-4.jpg');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  .background {
+    @extend .background-abst;
+    background-image: url('../../../assets/background-4.jpg');
+    @include filter-brightness(25%);
+  }
 }
 
 .col {
   @include display-flex();
   @include flex-flow-column();
-  padding: 5px;
+  padding: 5px 0;
 }
 
 .center-content {
@@ -133,7 +152,15 @@ img {
   color: white;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: $tablet-width) {
+  section,
+  div[class*='content'],
+  #banner,
+  .col {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   div[class*='content'] {
     width: 100%;
     margin: auto;

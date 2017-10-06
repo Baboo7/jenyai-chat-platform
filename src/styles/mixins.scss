@@ -96,6 +96,26 @@
   box-shadow: $h $v $blur $color;
 }
 
+@mixin filter-blur($px) {
+  -webkit-filter: blur($px); /* Safari 6.0 - 9.0 */
+  filter: blur($px);
+}
+
+@mixin filter-brightness($percentage) {
+  -webkit-filter: brightness($percentage); /* Safari 6.0 - 9.0 */
+  filter: brightness($percentage);
+}
+
+@mixin filter-contrast($percentage) {
+  -webkit-filter: contrast($percentage); /* Safari */
+    filter: contrast($percentage);
+}
+
+@mixin filter-grayscale($percentage) {
+  -webkit-filter: grayscale($percentage); /* Safari 6.0 - 9.0 */
+    filter: grayscale($percentage);
+}
+
 @mixin animation ($name, $dur, $delay, $ease, $count) {
   /* Safari 4.0 - 8.0 */
   -webkit-animation-name: $name;
