@@ -13,9 +13,12 @@ $color-3-xl: #D7EFFF;
 $color-4-xl: rgba(231, 241, 243, 1);
 $color-5-xl: rgba(223, 220, 218, 1);
 
+$blue: #24A7FF;
 $green: #8E9;
 $grey: rgba(0,0,0,0.2);
+$grey-d: rgba(0,0,0,0.4);
 $red: #F77;
+$white: white;
 
 .color-1 {
   color: $color-1;
@@ -31,6 +34,25 @@ $red: #F77;
 }
 .color-5 {
   color: $color-5;
+}
+
+.blue {
+  color: $blue;
+}
+.green {
+  color: $green;
+}
+.grey {
+  color: $grey;
+}
+.grey-d {
+  color: $grey-d;
+}
+.red {
+  color: $red;
+}
+.white {
+  color: $white;
 }
 
 .background-color-1 {

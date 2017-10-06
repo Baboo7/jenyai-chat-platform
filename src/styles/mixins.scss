@@ -21,6 +21,12 @@
   flex-flow: row;
 }
 
+@mixin display-flex-row-reverse () {
+  -webkit-flex-flow: row-reverse;
+  -ms-flex-flow: row-reverse;
+  flex-flow: row-reverse;
+}
+
 @mixin flex-flow-wrap () {
   -webkit-flex-flow: wrap;
   -ms-flex-flow: wrap;

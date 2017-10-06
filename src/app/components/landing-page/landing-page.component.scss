@@ -1,128 +1,149 @@
-@import '../../../styles/colors.scss';
-@import '../../../styles/mixins.scss';
+@import "../../../styles/colors.scss";
+@import "../../../styles/mixins.scss";
 
-:host {
+section {
+  padding: 4em 0;
+}
 
-  div[class*="section"] {
-    .font-m {
-      font-size: 2em;
-    }
+h1 {
+  font-size: 3em;
+}
 
-    .font-l {
-      font-size: 3em;
-    }
+h3 {
+  font-size: 2.5em;
+}
 
-    .font-xxl {
-      font-size: 5em;
-    }
+p {
+  font-size: 1.5em;
+}
 
-    > div {
-      padding: 2em;
-      width: 90%;
-      margin: auto;
+button {
+  background-color: none;
+  padding: 1.5em 6em;
+  cursor: pointer;
+  @include border-radius-1(5px);
+  border-width: 2px;
+  border-style: solid;
+  font-weight: bold;
+  font-size: 1em;
 
-      &[class*="banner"] {
-        @include display-flex();
-        @include align-items-center();
-        @include justify-content-space-around();
-
-        > div[class*="text"] {
-          max-width: 40%;
-
-          > div[class*="title"] {
-            @extend .font-xxl;
-            margin-bottom: 0.5em;
-            font-weight: bold;
-          }
-
-          > div[class*="description"] {
-            @extend .font-l;
-          }
-
-        }
-
-        div[class*="footnote"] {
-          @extend .font-m;
-          text-align: right;
-        }
-      }
-
-      &[class*="middle"] {
-        @include display-flex();
-        @include justify-content-space-around();
-        @include align-items-center();
-      }
-
-      > div {
-        padding: 2em;
-        display: inline-block;
-        text-align: center;
-      }
-    }
+  &[class*="prim"] {
+    border-color: $white;
+    color: $white;
   }
 
-  button {
-    padding: 1.5em 6em;
-    margin: 1em;
-    cursor: pointer;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    border-width: 2px;
-    border-style: solid;
-    font-weight: bold;
-    font-size: 1em;
+  &:hover {
+    color: $color-1;
+  }
+}
 
-    &[class*="prim"] {
-      background-color: rgba(0,0,0,0);
-      border-color: #FFFFFF;
-      color: #FFFFFF;
-    }
+div[class*='content'] {
+  width: 60%;
+  margin: 0 auto;
+  padding: 5px;
+}
 
-    &:hover {
-      background-color: #FFFFFF;
-      color: $color-1;
-    }
+div[class*='row'] {
+  @include display-flex();
+}
+
+div[class*='row-reverse'] {
+  @include display-flex-row-reverse();
+}
+
+div[class*='column-centered'] {
+  @include display-flex();
+  @include flex-flow-column();
+  @include align-items-center();
+}
+
+img {
+  max-height: 300px;
+  max-width: 300px;
+}
+
+#banner {
+  background-image: url('../../../assets/background-2.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 30vh 0;
+}
+
+#accessibility {
+  background-image: url('../../../assets/background-3.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#statistics {
+  background-image: url('../../../assets/background-4.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.col {
+  @include display-flex();
+  @include flex-flow-column();
+  padding: 5px;
+}
+
+.center-content {
+  @include justify-content-center();
+  @include align-items-center();
+}
+
+.col-25 {
+  @extend .col;
+  width: 25%;
+}
+
+.col-33 {
+  @extend .col;
+  width: 33%;
+}
+
+.col-50 {
+  @extend .col;
+  width: 50%;
+}
+
+.col-66 {
+  @extend .col;
+  width: 66%;
+}
+
+.col-75 {
+  @extend .col;
+  width: 75%;
+}
+
+.col-100 {
+  @extend .col;
+  width: 100%;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.white {
+  color: white;
+}
+
+@media screen and (max-width: 1000px) {
+  div[class*='content'] {
+    width: 100%;
+    margin: auto;
   }
 
-  #catchy {
-    height: 100vh;
-    @include display-flex();
+  div[class*='row'],
+  div[class*='column-centered'],
+  .col
+  {
     @include flex-flow-column();
-  }
-
-  #body {
-    background-image: url('../../../assets/background-1-xd.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    @include flex-grow(1);
-    @include display-flex();
-    @include flex-flow-column();
-    @include justify-content-center();
-
-    & h1 {
-      font-size: 3em;
-    }
-
-    #call-to-action {
-      @include display-flex();
-      @include flex-flow-column();
-      @include justify-content-center();
-      padding: 1em;
-
-      div {
-        display: flex;
-        @include justify-content-center();
-      }
-    }
-
-    .quote {
-      padding: 2em;
-      color: #FFFFFF;
-      text-align: center;
-      font-style: italic;
-    }
+    @include align-items-center();
   }
 }
