@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class LandingPageComponent {
 
+  private contacted: boolean = false;
+
+  private emailPatrn = /([A-Z]|[a-z]|[0-9]|-|_)+@([A-Z]|[a-z]|[0-9]|-|_)+\.([a-z])/;
+  private phonePatrn = /[0-9]/;
+
+  contact(): void {
+    this.contacted = true;
+  }
 }

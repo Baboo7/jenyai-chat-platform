@@ -52,8 +52,16 @@ adaptive learning. We tell the student where and why they are wrong. Our interac
     <div class="col-50 center-content"> <img src="../../../assets/target.svg" /> </div>
     <div class="col-50">
       <h3 class="blue">The right approach</h3>
-      <p class="grey-d">Jeny answers to millenials main aspiration: immediacy.
-Jeny answers to students' math questions and gives them the right exercises and content when they really need it 24/7.</p>
+      <p class="grey-d">JenyAI answers to millenials main aspiration: immediacy.
+JenyAI answers to students' math questions and gives them the right exercises and content when they really need it 24/7.</p>
+    </div>
+  </div>
+
+  <div class="content row-reverse">
+    <div class="col-50 center-content"> <img src="../../../assets/video-player.svg" /> </div>
+    <div class="col-50">
+      <h3 class="red">The best content</h3>
+      <p class="grey-d">JenyAI provides the best content for the students. Validated by pedagogical experts, we also deliver short curated videos which ensure a perfect understanding of the notions seen in class.</p>
     </div>
   </div>
 </section>
@@ -77,5 +85,88 @@ Jeny answers to students' math questions and gives them the right exercises and 
     <div class="col-33 center-content"> <img src="../../../assets/hec-logo.png" /> </div>
     <div class="col-33 center-content"> <img src="../../../assets/x-logo.png" /> </div>
     <div class="col-33 center-content"> <img src="../../../assets/berk-logo.png" /> </div>
+  </div>
+</section>
+
+<section id="get-in-touch">
+  <h1 class="center-text">Get in touch</h1>
+  <div class="content row">
+    <div class="col-50 center-content">
+      <p>1429, Channing Way, Berkeley, Cal</p>
+      <p>30 avenue de l'Opéra, 75002, Paris</p>
+    </div>
+    <div class="col-50 center-content">
+      <form
+        *ngIf="contacted == false"
+        (ngSubmit)="contact()"
+        #contactForm="ngForm">
+        <div>
+          <label for="name"> Name </label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            placeholder="name"
+            [(ngModel)]="name"
+            #nameInput="ngModel"
+            required >
+          <div *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)">
+            <div class="errors" *ngIf="nameInput.errors.required"> Your name is required </div>
+          </div>
+        </div>
+        <div>
+          <label for="email"> Email </label>
+          <input
+            id="email"
+            name="email"
+            type="text"
+            placeholder="tyler@durden.fc"
+            [(ngModel)]="email"
+            #emailInput="ngModel"
+            required
+            [pattern]="emailPatrn" >
+          <div *ngIf="emailInput.invalid && emailInput.touched">
+            <div class="errors" *ngIf="emailInput.errors.required"> Your email is required </div>
+            <div class="errors" *ngIf="emailInput.errors.pattern"> The entered email is invalid </div>
+          </div>
+        </div>
+        <div>
+          <label for="phone"> Phone </label>
+          <input
+            id="phone"
+            name="phone"
+            type="text"
+            placeholder="phone"
+            [(ngModel)]="phone"
+            #phoneInput="ngModel"
+            [pattern]="phonePatrn" >
+          <div *ngIf="phoneInput.invalid && phoneInput.touched">
+            <div class="errors" *ngIf="phoneInput.errors.required"> Your phone is required </div>
+            <div class="errors" *ngIf="phoneInput.errors.pattern"> A phone number must contains only numbers </div>
+          </div>
+        </div>
+        <div>
+          <label for="msg"> Message </label>
+          <textarea
+            id="msg"
+            name="msg"
+            type="text"
+            placeholder="msg"
+            [(ngModel)]="msg"
+            #msgInput="ngModel"
+            required >
+          </textarea>
+          <div *ngIf="msgInput.invalid && msgInput.touched">
+            <div class="errors" *ngIf="msgInput.errors.required"> Your message can not be blank </div>
+          </div>
+        </div>
+
+        <div>
+          <button type="submit" [disabled]="!contactForm.form.valid"> Send </button>
+        </div>
+      </form>
+
+      <p *ngIf="contacted == true"> Thank you! We will contact you soon </p>
+    </div>
   </div>
 </section>

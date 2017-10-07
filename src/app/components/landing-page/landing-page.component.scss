@@ -103,6 +103,10 @@ img {
   }
 }
 
+#get-in-touch {
+  background-color: $color-2;
+}
+
 .col {
   @include display-flex();
   @include flex-flow-column();
@@ -173,4 +177,85 @@ img {
     @include flex-flow-column();
     @include align-items-center();
   }
+}
+
+/************************** FORM ****************************/
+
+form button {
+  width: 100%;
+  margin-top: 1em;
+  padding: 1.5em 6em;
+  cursor: pointer;
+  @include border-radius-1(5px);
+  border-width: 2px;
+  border-style: solid;
+  font-weight: bold;
+  font-size: 1em;
+  background-color: rgba(0,0,0,0);
+  border-color: #FFFFFF;
+  color: #FFFFFF;
+
+  &:hover {
+    background-color: #FFFFFF;
+    color: $color-1;
+  }
+
+  &[disabled],
+  &[disabled]:hover {
+    background-color: rgba(0,0,0,0);
+    border-color: #FFFFFF;
+    color: #FFFFFF;
+    opacity: 0.5;
+  }
+}
+
+form {
+  width: 400px;
+  margin: 0 auto;
+  margin-top: 2em;
+  padding: 1em 0;
+  @include border-radius-1(10px);
+
+  > div {
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 1em;
+
+    label {
+      display: block;
+      width: 100%;
+      margin-bottom: 0.25em;
+      color: $grey-d;
+    }
+
+    input,
+    textarea {
+      display: block;
+      width: 100%;
+      padding: 1em 0;
+      padding-left: 1em;
+
+      @include border-radius-1(5px);
+      border: 1px solid $grey;
+      border-left: 5px solid $grey;
+    }
+  }
+}
+
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid $green !important;
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid $red !important;
+}
+
+.errors {
+  width: 100%;
+  padding: 1em 0;
+  text-indent: 1em;
+  background-color: $red;
+  color: $white;
+  border-left: 5px solid $red;
+  @include border-radius-1(5px);
 }
