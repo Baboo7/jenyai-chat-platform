@@ -19,6 +19,9 @@ export class TeacherLoginComponent {
   @Output() private roomIdChange: EventEmitter<string> = new EventEmitter();
   @Output() private connectedChange: EventEmitter<boolean> = new EventEmitter();
 
+  private namePatrn = /^([A-Z]([A-Z]|[a-z])*\s?)+$/;
+  private uppercasePatrn = /^[A-Z]+$/;
+
   constructor(private http: HttpClient) { }
 
   joinSession(): void {

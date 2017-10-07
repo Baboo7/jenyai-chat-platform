@@ -69,11 +69,11 @@ button[class*="student"] {
   font-size: 1em;
   margin-left: 10px;
   background-color: rgba(0,0,0,0);
-  border-color: $red;
-  color: $red;
+  border-color: $color-1;
+  color: $color-1;
 
   &:hover {
-    background-color: $red;
+    background-color: $color-1;
     border-color: $white;
     color: $white;
   }

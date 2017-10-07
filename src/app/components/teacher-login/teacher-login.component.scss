@@ -1,91 +1,123 @@
 @import '../../../styles/colors.scss';
+@import '../../../styles/metrics.scss';
 @import '../../../styles/mixins.scss';
 
 :host {
   height: 100vh;
-  @include display-flex();
-  @include flex-flow-column();
+  overflow-y: auto;
+}
 
-  button {
-    padding: 1.5em 6em;
-    cursor: pointer;
-    @include border-radius-1(5px);
-    border-width: 2px;
-    border-style: solid;
-    font-weight: bold;
-    font-size: 1em;
+#bg-pic {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: url('../../../assets/background-1-xd.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -5;
+}
 
-    &[class*="prim"] {
-      background-color: rgba(0,0,0,0);
-      border-color: #FFFFFF;
-      color: #FFFFFF;
-    }
+#bg-color-fltr {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: $color-3;
+  opacity: 0.2;
+  z-index: -4;
+}
 
-    &:hover {
-      background-color: #FFFFFF;
-      color: $color-1;
-    }
+button {
+  width: 100%;
+  margin-top: 1em;
+  padding: 1.5em 6em;
+  cursor: pointer;
+  @include border-radius-1(5px);
+  border-width: 2px;
+  border-style: solid;
+  font-weight: bold;
+  font-size: 1em;
+  background-color: rgba(0,0,0,0);
+  border-color: #FFFFFF;
+  color: #FFFFFF;
+
+  &:hover {
+    background-color: #FFFFFF;
+    color: $color-1;
   }
 
-  #body {
-    background-image: url('../../../assets/background-1-xd.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+  &[disabled],
+  &[disabled]:hover {
+    background-color: rgba(0,0,0,0);
+    border-color: #FFFFFF;
+    color: #FFFFFF;
+    opacity: 0.5;
+  }
+}
 
-    @include flex-grow(1);
-    @include display-flex();
-    @include flex-flow-column();
-    @include justify-content-center();
+form {
+  width: 400px;
+  margin: 0 auto;
+  margin-top: 2em;
+  padding: 1em 0;
+  @include border-radius-1(10px);
 
-    > div {
-      background-color: $color-1;
-      margin: auto;
-      padding: 2em;
-      @include border-radius-1(10px);
+  h1 {
+    text-align: center;
+    color: white;
+    margin-bottom: 1em;
+  }
 
-      @include display-flex();
-      @include flex-flow-column();
-      @include justify-content-center();
+  > div {
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 1em;
 
-      h1 {
-        text-align: center;
-        color: white;
-        font-style: italic;
-      }
-
-      #inputs {
-        @include display-flex();
-        @include flex-flow-column();
-        @include justify-content-center();
-        padding: 1em;
-
-        > div {
-          @include display-flex();
-          @include flex-flow-column();
-          margin-bottom: 1em;
-
-          label {
-            @include flex-grow(1);
-            margin-bottom: 0.5em;
-            color: white;
-          }
-
-          input {
-            @include flex-grow(1);
-            padding: 1em;
-
-            @include border-radius-1(5px);
-            border: 1px solid rgba(0,0,0,0.3);
-          }
-        }
-      }
-
-      #call-to-action {
-        @include display-flex();
-        @include justify-content-center();
-        padding: 1em;
-      }
+    label {
+      display: block;
+      width: 100%;
+      margin-bottom: 0.25em;
+      color: white;
     }
+
+    input {
+      display: block;
+      width: 100%;
+      padding: 1em 0;
+      text-indent: 1em;
+
+      @include border-radius-1(5px);
+      border: 1px solid $grey;
+    }
+  }
+}
+
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid $green !important;
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid $red !important;
+}
+
+.errors {
+  width: 100%;
+  padding: 1em 0;
+  text-indent: 1em;
+  background-color: $red;
+  color: $white;
+  border-left: 5px solid $red;
+  @include border-radius-1(5px);
+}
+
+@media screen and (max-width: $tablet-width) {
+  form {
+    width: 100%;
+    margin-top: 0;
+    @include border-radius-1(0px);
   }
 }
