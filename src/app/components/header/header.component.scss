@@ -6,8 +6,9 @@
   z-index: 100;
   background-color: $white;
   padding: 1em;
+  @include flex(0,0,auto);
   @include display-flex();
-  box-shadow: 0 3px 3px $grey;
+  @include box-shadow(0,3px,3px,$grey);
 }
 
 #logo {
