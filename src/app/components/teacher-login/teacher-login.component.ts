@@ -19,8 +19,9 @@ export class TeacherLoginComponent {
   @Output() private roomIdChange: EventEmitter<string> = new EventEmitter();
   @Output() private connectedChange: EventEmitter<boolean> = new EventEmitter();
 
-  private namePatrn = /^([A-Z]([A-Z]|[a-z])*\s?)+$/;
-  private uppercasePatrn = /^[A-Z]+$/;
+  private serverMsg: string = ''; // Message received from the server
+  private namePatrn = /^([A-Z]([A-Z]|[a-z])*\s?)+$/; // Regex for name validation
+  private uppercasePatrn = /^[A-Z]+$/; // Regex for uppercase validation
 
   constructor(private http: HttpClient) { }
 
@@ -35,6 +36,8 @@ export class TeacherLoginComponent {
           this.nameChange.emit(this.name);
           this.roomIdChange.emit(this.roomId);
           this.connectedChange.emit(true);
+        } else {
+          this.serverMsg = data['message'];
         }
       },
       err => { }

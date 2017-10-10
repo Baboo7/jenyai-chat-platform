@@ -5,6 +5,9 @@
 
 <form (ngSubmit)="joinSession()" #teacherForm="ngForm">
   <h1> Teacher </h1>
+
+  <div *ngIf="serverMsg" class="errors"> {{serverMsg}} </div>
+
   <div>
     <label for="name"> Name </label>
     <input
