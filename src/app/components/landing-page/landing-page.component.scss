@@ -9,6 +9,7 @@ section {
 
 h1 {
   font-size: 3em;
+  text-shadow: 3px 3px 5px $grey;
 }
 
 h3 {
@@ -61,8 +62,13 @@ div[class*='column-centered'] {
 }
 
 img {
-  max-height: 300px;
-  max-width: 300px;
+  max-height: 250px;
+  max-width: 250px;
+
+  &[class*='square'] {
+    height: 250px;
+    width: 250px;
+  }
 }
 
 .background-abst {
@@ -87,6 +93,32 @@ img {
   }
 }
 
+#slogan {
+  position: relative;
+
+  .bg-ptrn {
+    position: absolute;
+    z-index: -10;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url('../../../assets/pattern.jpg');
+    opacity: 0.1;
+    @include filter-blur(1px);
+  }
+
+  .bg-clr {
+    position: absolute;
+    z-index: -10;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    @include linear-gradient(-50deg, $color-1-l, $color-1);
+  }
+}
+
 #accessibility {
   .background {
     @extend .background-abst;
@@ -104,7 +136,29 @@ img {
 }
 
 #get-in-touch {
-  background-color: $color-2;
+  position: relative;
+
+  .bg-ptrn {
+    position: absolute;
+    z-index: -10;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: url('../../../assets/pattern.jpg');
+    opacity: 0.1;
+    @include filter-blur(1px);
+  }
+
+  .bg-clr {
+    position: absolute;
+    z-index: -10;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: $color-2;
+  }
 }
 
 .col {
@@ -112,6 +166,7 @@ img {
   @include flex-flow-column();
   @include flex-flow-wrap();
   padding: 5px 0;
+  box-sizing: border-box;
 }
 
 .center-content {
@@ -235,15 +290,20 @@ form {
 
     input,
     textarea {
+      box-sizing: border-box;
       display: block;
       width: 100%;
       padding: 1em 0;
       padding-left: 1em;
-      resize: vertical;
 
       @include border-radius-1(5px);
       border: 1px solid $grey;
       border-left: 5px solid $grey;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 3em;
     }
   }
 }
@@ -257,11 +317,11 @@ form {
 }
 
 .errors {
+  box-sizing: border-box;
   width: 100%;
   padding: 1em 0;
   text-indent: 1em;
   background-color: $red;
   color: $white;
-  border-left: 5px solid $red;
   @include border-radius-1(5px);
 }

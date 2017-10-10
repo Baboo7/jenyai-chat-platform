@@ -7,12 +7,19 @@ $color-3: #24A7FF;
 $color-4: rgba(127, 183, 190, 1);
 $color-5: rgba(80, 65, 54, 1);
 
+$color-1-l: #FEBE6E;
+$color-3-l: #4BB7FF;
+
 $color-1-xl: #FEF0DE;
 $color-2-xl: #F4FAFF;
 $color-3-xl: #D7EFFF;
 $color-4-xl: rgba(231, 241, 243, 1);
 $color-5-xl: rgba(223, 220, 218, 1);
 
+$color-1-d: #D09140;
+$color-3-d: #1E89D1;
+
+$black: #222222;
 $blue: #24A7FF;
 $green: #8E9;
 $grey: rgba(0,0,0,0.2);
@@ -36,6 +43,9 @@ $white: white;
   color: $color-5;
 }
 
+.black {
+  color: $black;
+}
 .blue {
   color: $blue;
 }
@@ -85,4 +95,12 @@ $white: white;
 }
 .background-color-5-xl {
   background-color: $color-5-xl;
+}
+
+.background-color-3-l {
+  background-color: $color-3-l;
+}
+
+.background-color-3-d {
+  background-color: $color-3-d;
 }

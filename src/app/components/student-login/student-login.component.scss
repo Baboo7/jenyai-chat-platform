@@ -85,11 +85,10 @@ form {
     }
 
     input {
+      box-sizing: border-box;
       display: block;
       width: 100%;
-      padding: 1em 0;
-      text-indent: 1em;
-
+      padding: 1em;
       @include border-radius-1(5px);
       border: 1px solid $grey;
     }
@@ -105,9 +104,9 @@ form {
 }
 
 .errors {
+  box-sizing: border-box;
   width: 100%;
-  padding: 1em 0;
-  text-indent: 1em;
+  padding: 1em;
   background-color: $red;
   color: $white;
   border-left: 5px solid $red;
