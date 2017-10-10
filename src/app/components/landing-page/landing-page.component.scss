@@ -110,12 +110,17 @@ img {
 .col {
   @include display-flex();
   @include flex-flow-column();
+  @include flex-flow-wrap();
   padding: 5px 0;
 }
 
 .center-content {
   @include justify-content-center();
   @include align-items-center();
+}
+
+.margin {
+  margin: 1em;
 }
 
 .col-25 {
@@ -210,7 +215,7 @@ form button {
 }
 
 form {
-  width: 400px;
+  width: 100%;
   margin: 0 auto;
   margin-top: 2em;
   padding: 1em 0;
@@ -234,6 +239,7 @@ form {
       width: 100%;
       padding: 1em 0;
       padding-left: 1em;
+      resize: vertical;
 
       @include border-radius-1(5px);
       border: 1px solid $grey;
