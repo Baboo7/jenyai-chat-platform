@@ -1,16 +1,17 @@
 @import '../../../../../styles/colors.scss';
+@import '../../../../../styles/metrics.scss';
+@import '../../../../../styles/mixins.scss';
 
 :host {
-  margin-top: 5px;
-  display: flex;
+  margin-top: #{$msg-mg-top};
+  @include display-flex();
 
   #container {
-    flex: 0 0 auto;
-    max-width: 80%;
-    box-sizing: padding-box;
+    @include flex(0,0,auto);
+    max-width: #{$msg-text-max-w};
     word-wrap: break-word;
     padding: 0.5em;
-    border-radius: 10px;
+    @include border-radius-1(10px);
 
     &[class*="right"] {
       background-color: $color-1;
@@ -24,6 +25,6 @@
   }
 
   #filler {
-    flex-grow: 1;
+    @include flex-grow(1);
   }
 }

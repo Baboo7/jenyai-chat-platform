@@ -1,27 +1,35 @@
 @import '../../../../../styles/colors.scss';
+@import '../../../../../styles/metrics.scss';
+@import '../../../../../styles/mixins.scss';
 
-:host {
-  margin-top: 5px;
-  display: flex;
+#container {
+  margin-top: #{$msg-mg-top};
+  max-width: #{$msg-video-w};
+  padding: 0.5em;
+  @include border-radius-1(10px);
 
-  #container {
-    flex: 0 0 auto;
-    max-width: 80%;
-    padding: 0.5em;
-    border-radius: 10px;
-
-    &[class*="right"] {
-      background-color: $color-1;
-      color: white;
-    }
-
-    &[class*="left"] {
-      background-color: $color-3;
-      color: white;
-    }
+  &[class*="right"] {
+    margin-left: calc(100% - #{$msg-video-w});
+    background-color: $color-1;
+    color: white;
   }
 
-  #filler {
-    flex-grow: 1;
+  &[class*="left"] {
+    background-color: $color-3;
+    color: white;
   }
+}
+
+.intrinsic-container {
+	position: relative;
+	padding-bottom: 56.25%;
+	height: 0;
+}
+
+.intrinsic-element {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 }

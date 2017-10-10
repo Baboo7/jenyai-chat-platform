@@ -1,47 +1,47 @@
-:host {
-  flex-grow: 1;
+@import '../../../styles/colors.scss';
+@import '../../../styles/mixins.scss';
 
-  display: flex;
-  flex-direction: column;
+:host {
+  @include flex-grow(1);
+  @include display-flex();
+  @include flex-flow-column();
 }
 
 #conversation-container {
-  flex-grow: 1;
-  
-  min-height: 0;
+  @include flex-grow(1);
   padding: 1em;
   overflow-y: auto;
 }
 
 #input-container {
-  flex: 0 0 auto;
+  @include flex(0,0,auto);
   padding: 0 1em;
 
   div {
-    display: flex;
-    border-top: 1px solid rgba(0,0,0,0.3);
+    @include display-flex();
+    border-top: 1px solid $grey;
     padding: 1em 0;
 
     #input-bar {
-      flex: 1;
+      @include flex-grow(1);
       padding: 1em;
-
-      -webkit-border-radius: 5px 0 0 5px;
-      -moz-border-radius: 5px 0 0 5px;
-      border-radius: 5px 0 0 5px;
-      border: 1px solid rgba(0,0,0,0.3);
+      @include border-radius-4(5px,0,0,5px);
+      border: 1px solid $grey;
     }
 
     #send-button {
-      flex: 0 0 auto;
+      @include flex(0,0,auto);
       padding: 1em;
-
-      -webkit-border-radius: 0 5px 5px 0;
-      -moz-border-radius: 0 5px 5px 0;
-      border-radius: 0 5px 5px 0;
-      background-color: rgba(0,0,0,0.1);
-      border: 1px solid rgba(0,0,0,0.2);
+      @include border-radius-4(0,5px,5px,0);
+      background-color: $white;
+      color: $grey-d;
+      border: 1px solid $grey;
       border-left: none;
+
+      &:hover {
+        background-color: $color-1;
+        color: $white;
+      }
     }
   }
 }
