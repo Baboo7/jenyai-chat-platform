@@ -1,0 +1,57 @@
+@import '../../../../../styles/colors.scss';
+@import '../../../../../styles/metrics.scss';
+@import '../../../../../styles/mixins.scss';
+
+:host {
+  margin-top: #{$msg-mg-top};
+  @include display-flex();
+}
+
+#container {
+  @include flex(0,0,auto);
+  padding: 0.5em;
+  @include border-radius-1(10px);
+  background-color: rgba(0,0,0,0);
+}
+
+#filler {
+  @include flex-grow(1);
+}
+
+.circle-abst {
+  @include animation('expand', 3s, 0, linear, infinite, forwards);
+  opacity: 0;
+  margin: 0 1px;
+}
+
+#c1 {
+  @extend .circle-abst;
+  animation-delay: 0s;
+}
+
+#c2 {
+  @extend .circle-abst;
+  animation-delay: 0.5s;
+}
+
+#c3 {
+  @extend .circle-abst;
+  animation-delay: 1s;
+}
+
+@keyframes expand {
+  0% {
+    transform: scale(1);
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  33% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}

@@ -16,6 +16,7 @@ import { TeacherChatComponent } from './components/teacher-chat/teacher-chat.com
 import { TextComponent } from './components/chat/messages/text/text.component';
 import { TeacherLoginComponent } from './components/teacher-login/teacher-login.component';
 import { TeacherSpaceComponent } from './components/teacher-space/teacher-space.component';
+import { TypingIndicatorComponent } from './components/chat/messages/typing-indicator/typing-indicator.component';
 import { VideoComponent } from './components/chat/messages/video/video.component';
 
 import { SafePipe } from './pipes/safe.pipe';
@@ -34,6 +35,7 @@ import { SafePipe } from './pipes/safe.pipe';
     TextComponent,
     TeacherLoginComponent,
     TeacherSpaceComponent,
+    TypingIndicatorComponent,
     VideoComponent,
 
     SafePipe

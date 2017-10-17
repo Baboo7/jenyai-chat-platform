@@ -3,13 +3,18 @@
 <div id="content">
   <students-list
     [students]="students"
-    [selectedStudent]="selectedStudent"
+    [selectedStudent]="selectedStudent.id"
+    
     (selectedStudentChange)="onSelectedStudent($event)">
   </students-list>
 
   <chat
-    [messages]="messages[selectedStudent]"
-    [recipient]="selectedStudent"
-    [emitterType]="emitterType">
+    [emitterType]="emitterType"
+    [isEmitterTyping]="isEmitterTyping"
+    [messages]="messages[selectedStudent.id]"
+    [recipient]="selectedStudent.id"
+    [userInput]="selectedStudent.userInput"
+
+    (userInputChange)="onUserInputChange($event)">
   </chat>
 </div>
