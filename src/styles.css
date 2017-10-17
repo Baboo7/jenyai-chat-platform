@@ -27,7 +27,7 @@ body {
   justify-content: center;
 }
 
-#c1 {
+#loader-c1 {
   margin: 0 2em;
   opacity: 0;
   animation-name: 'expand';
@@ -38,7 +38,7 @@ body {
   animation-fill-mode: forwards;
 }
 
-#c2 {
+#loader-c2 {
   margin: 0 2em;
   opacity: 0;
   animation-name: 'expand';
@@ -49,7 +49,7 @@ body {
   animation-fill-mode: forwards;
 }
 
-#c3 {
+#loader-c3 {
   margin: 0 2em;
   opacity: 0;
   animation-name: 'expand';

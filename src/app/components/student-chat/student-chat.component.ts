@@ -14,6 +14,7 @@ export class StudentChatComponent implements OnInit, OnDestroy {
   private connection;
   private emitterType: string = 'student';
   private id: string;
+  private isEmitterTyping: boolean = false;
   private messages = [ ];
   @Input() private name: string;
   @Input() private roomId: string;
@@ -30,6 +31,14 @@ export class StudentChatComponent implements OnInit, OnDestroy {
     this.connection = this.websocket.addListener('message').subscribe((data: any) => {
       let msg = Parser.format(data, this.id);
       if (msg !== null) { this.messages.push(msg); }
+    });
+
+    this.connection = this.websocket.addListener('typing-on').subscribe((data: any) => {
+      this.isEmitterTyping = true;
+    });
+
+    this.connection = this.websocket.addListener('typing-off').subscribe((data: any) => {
+      this.isEmitterTyping = false;
     });
 
     this.websocket.send(

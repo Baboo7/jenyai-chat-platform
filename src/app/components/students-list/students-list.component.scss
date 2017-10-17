@@ -60,6 +60,11 @@
   @include justify-content-center();
 }
 
+.badge-typing {
+  @extend .badge-abstract;
+  background-color: $color-1;
+}
+
 .badge-uptodate {
   @extend .badge-abstract;
   background-color: $green;
