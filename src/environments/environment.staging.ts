@@ -6,6 +6,6 @@
 import { api } from './api';
 
 export const environment = {
-  api: api('https://staging-nellyana.herokuapp.com/'),
+  api: api('https://staging-jenyai.herokuapp.com/'),
   production: false
 };
