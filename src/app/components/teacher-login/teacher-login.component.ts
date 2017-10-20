@@ -30,7 +30,12 @@ export class TeacherLoginComponent {
       return;
     }
 
-    this.http.post(`${environment.api.classroom}${this.roomId}`, { password: this.password }).subscribe(
+    let body = {
+      id: this.roomId,
+      password: this.password
+    };
+
+    this.http.post(`${environment.api}/rooms/connect/teacher`, body).subscribe(
       data => {
         if(data['success']) {
           this.nameChange.emit(this.name);

@@ -3,9 +3,7 @@
 // `ng build --env=prod` then `environment.prod.ts` will be used instead.
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
-import { api } from './api';
-
 export const environment = {
-  api: api('https://staging-jenyai.herokuapp.com/'),
+  api: 'https://staging-jenyai.herokuapp.com',
   production: false
 };

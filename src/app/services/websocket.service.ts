@@ -17,7 +17,7 @@ export class WebsocketService {
   connect() {
     this.connections++;
     if (this.socket === undefined) {
-      this.socket = io(environment.api.baseUrl);
+      this.socket = io(environment.api);
     }
   }
 
