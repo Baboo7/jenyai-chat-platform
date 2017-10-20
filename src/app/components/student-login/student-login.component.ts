@@ -20,7 +20,7 @@ export class StudentLoginComponent {
 
   private serverMsg: string = ''; // Message received from the server
   private namePatrn = /^([A-Z]([A-Z]|[a-z])*\s?)+$/; // Regex for name validation
-  private uppercasePatrn = /^[A-Z]+$/; // Regex for uppercase validation
+  private roomIdPatrn = /^([A-Z]|[a-z]|[0-9]|-|_)+$/; // Regex for uppercase validation
 
   constructor(private http: HttpClient) { }
 

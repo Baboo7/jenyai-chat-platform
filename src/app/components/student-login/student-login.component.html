@@ -34,8 +34,8 @@
       [(ngModel)]="roomId"
       #roomIdInput="ngModel"
       required
-      [pattern]="uppercasePatrn" >
-    <div *ngIf="roomIdInput.invalid && roomIdInput.touched">
+      [pattern]="roomIdPatrn" >
+    <div *ngIf="roomIdInput.invalid && (roomIdInput.dirty || roomIdInput.touched)">
       <div class="errors" *ngIf="roomIdInput.errors.required"> The classroom id is required </div>
       <div class="errors" *ngIf="roomIdInput.errors.pattern"> The classroom id must be composed of uppercase letters only </div>
     </div>

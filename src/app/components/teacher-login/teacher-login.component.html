@@ -34,8 +34,8 @@
       [(ngModel)]="roomId"
       #roomIdInput="ngModel"
       required
-      [pattern]="uppercasePatrn" >
-    <div *ngIf="roomIdInput.invalid && roomIdInput.touched">
+      [pattern]="roomIdPatrn" >
+    <div *ngIf="roomIdInput.invalid && (roomIdInput.dirty || roomIdInput.touched)">
       <div class="errors" *ngIf="roomIdInput.errors.required"> The classroom id is required </div>
       <div class="errors" *ngIf="roomIdInput.errors.pattern"> The classroom id must be composed of uppercase letters only </div>
     </div>
@@ -47,14 +47,11 @@
       name="password"
       type="password"
       placeholder="password"
-      maxlength="8"
       [(ngModel)]="password"
       #passwordInput="ngModel"
-      required
-      [pattern]="uppercasePatrn" >
+      required >
     <div *ngIf="passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)">
       <div class="errors" *ngIf="passwordInput.errors.required"> The password id is required </div>
-      <div class="errors" *ngIf="passwordInput.errors.pattern"> The password id must be composed of uppercase letters only </div>
     </div>
   </div>
 
