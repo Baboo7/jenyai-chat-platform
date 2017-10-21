@@ -30,11 +30,10 @@ export class StudentsListComponent implements OnInit, OnDestroy {
   }
 
   selectStudent(id): void {
-    this.websocket.send(
-      'connect-student',
-      {
-        id: this.students[id].id
-      }
-    );
+    let msg = {
+      id: this.students[id].id
+    };
+
+    this.websocket.send('connect-student', msg);
   }
 }

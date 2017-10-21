@@ -14,7 +14,6 @@ export class ChatComponent implements AfterViewChecked, DoCheck {
   private toScroll: boolean;
   private wasTyping: boolean = false;
 
-  @Input() private emitterType;
   @Input() private isEmitterTyping: boolean;
   @Input() private recipient;
   @Input() private messages;
@@ -47,11 +46,13 @@ export class ChatComponent implements AfterViewChecked, DoCheck {
       return;
     }
 
-    this.websocket.send('message', {
+    let msg = {
       recipient: this.recipient,
       type: 'text',
       payload: this.userInput
-    });
+    };
+
+    this.websocket.send('message', msg);
     this.userInput = '';
   }
 

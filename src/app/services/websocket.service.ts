@@ -29,7 +29,7 @@ export class WebsocketService {
     }
   }
 
-  send(event: string, obj = {}): void {
+  send(event: string, obj: any = {}): void {
     this.socket.emit(event, obj);
   }
 

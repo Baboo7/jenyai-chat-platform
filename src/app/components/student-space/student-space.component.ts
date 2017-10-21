@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 
+import { TokenManager } from '../../services/token-manager.service';
+
 @Component({
   selector: 'student-space',
   templateUrl: './student-space.component.html',
-  styleUrls: [ './student-space.component.scss' ]
+  styleUrls: [ './student-space.component.scss' ],
+  providers: [ TokenManager ]
 })
 export class StudentSpaceComponent {
 
-  private connected: boolean = false;
-  private name: string;
-  private roomId: string;
+  private connected: boolean = this.tokenManager.doesTokenExist();
 
-  constructor() { }
+  constructor(private tokenManager: TokenManager) { }
 }

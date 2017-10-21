@@ -1,14 +1,3 @@
-<student-login
-  *ngIf="connected == false"
+<student-login *ngIf="connected == false" [(connected)]="connected" > </student-login>
 
-  [(connected)]="connected"
-  [(name)]="name"
-  [(roomId)]="roomId">
-</student-login>
-
-<student-chat
-  *ngIf="connected == true"
-
-  [name]="name"
-  [roomId]="roomId">
-</student-chat>
+<student-chat *ngIf="connected == true" > </student-chat>
