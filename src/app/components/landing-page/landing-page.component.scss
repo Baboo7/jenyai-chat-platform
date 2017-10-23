@@ -20,6 +20,7 @@ p {
   font-size: 1.5em;
 }
 
+a,
 button {
   background-color: rgba(0,0,0,0);
   padding: 1.5em 6em;
@@ -29,6 +30,7 @@ button {
   border-style: solid;
   font-weight: bold;
   font-size: 1em;
+  text-decoration: none;
 
   &[class*="prim"] {
     border-color: $white;
