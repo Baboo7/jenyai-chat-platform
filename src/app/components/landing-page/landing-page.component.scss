@@ -135,7 +135,7 @@ img {
   }
 }
 
-#get-in-touch {
+#volunteer {
   position: relative;
 
   .bg-ptrn {
@@ -157,7 +157,7 @@ img {
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: $color-2;
+    @include linear-gradient(-50deg, $color-3-l, $color-3);
   }
 }
 
@@ -252,19 +252,19 @@ form button {
   font-weight: bold;
   font-size: 1em;
   background-color: rgba(0,0,0,0);
-  border-color: #FFFFFF;
-  color: #FFFFFF;
+  border-color: $color-3;
+  color: $color-3;
 
   &:hover {
-    background-color: #FFFFFF;
-    color: $color-1;
+    background-color: $color-3;
+    color: $white;
   }
 
   &[disabled],
   &[disabled]:hover {
     background-color: rgba(0,0,0,0);
-    border-color: #FFFFFF;
-    color: #FFFFFF;
+    border-color: $grey-d;
+    color: $grey-d;
     opacity: 0.5;
   }
 }
