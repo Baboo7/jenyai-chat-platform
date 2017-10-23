@@ -13,4 +13,17 @@ export class TeacherSpaceComponent {
   private connected: boolean = this.tokenManager.doesTokenExist();
 
   constructor(private tokenManager: TokenManager) { }
+
+  /*  Disconnect the user from the room by removing the token.
+
+      PARAMS
+        none
+
+      RETURN
+        none
+  */
+  private disconnect(): void {
+    this.tokenManager.removeToken();
+    this.connected = false;
+  }
 }

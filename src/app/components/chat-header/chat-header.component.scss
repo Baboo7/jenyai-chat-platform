@@ -1,0 +1,23 @@
+@import '../../../styles/colors.scss';
+@import '../../../styles/metrics.scss';
+@import '../../../styles/mixins.scss';
+
+:host {
+  background-color: $color-1-l;
+  padding: 1em;
+  @include flex(0,0,auto);
+}
+
+img {
+  height: 30px;
+  width: 30px;
+}
+
+button {
+  background-color: inherit;
+  border: 0;
+}
+
+@media screen and (max-width: $tablet-width) {
+
+}

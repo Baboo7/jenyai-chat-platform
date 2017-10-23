@@ -1,5 +1,7 @@
 <app-header></app-header>
 
+<chat-header (fireDisconnection)="disconnect()"></chat-header>
+
 <chat
   [isEmitterTyping]="isEmitterTyping"
   [messages]="messages"

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
 
 import { WebsocketService } from '../../services/websocket.service';
 import { TokenManager } from '../../services/token-manager.service';
@@ -20,6 +20,8 @@ export class TeacherChatComponent implements OnInit, OnDestroy {
   private messages = { };
   private selectedStudent: StudentInterface = { id: '', isTyping: false, name: '', userInput: '', unseen: 0 };
   private students: StudentInterface[ ] = [ ];
+
+  @Output() private fireDisconnection: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private websocket: WebsocketService, private tokenManager: TokenManager) {
     this.websocket.connect();
@@ -101,6 +103,18 @@ export class TeacherChatComponent implements OnInit, OnDestroy {
         }
       }
     }
+  }
+
+  /*  Emit the event to disconnect the user from the room.
+
+      PARAMS
+        none
+
+      RETURN
+        none
+  */
+  private disconnect(): void {
+    this.fireDisconnection.emit(true);
   }
 
   handleTypingIndicator(student: StudentInterface): void {

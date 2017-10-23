@@ -8,12 +8,16 @@
     (selectedStudentChange)="onSelectedStudent($event)">
   </students-list>
 
-  <chat
-    [isEmitterTyping]="isEmitterTyping"
-    [messages]="messages[selectedStudent.id]"
-    [recipient]="selectedStudent.id"
-    [userInput]="selectedStudent.userInput"
+  <div id="chat">
+    <chat-header (fireDisconnection)="disconnect()"></chat-header>
 
-    (userInputChange)="onUserInputChange($event)">
-  </chat>
+    <chat
+      [isEmitterTyping]="isEmitterTyping"
+      [messages]="messages[selectedStudent.id]"
+      [recipient]="selectedStudent.id"
+      [userInput]="selectedStudent.userInput"
+
+      (userInputChange)="onUserInputChange($event)">
+    </chat>
+  </div>
 </div>

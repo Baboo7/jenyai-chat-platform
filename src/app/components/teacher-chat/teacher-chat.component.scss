@@ -10,3 +10,9 @@
   @include flex-grow(1);
   @include display-flex();
 }
+
+#chat {
+  @include flex-grow(1);
+  @include display-flex();
+  @include flex-flow-column();
+}

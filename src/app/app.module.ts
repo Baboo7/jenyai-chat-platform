@@ -6,6 +6,7 @@ import { RouterModule }   from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { ChatComponent } from './components/chat/chat.component';
+import { ChatHeaderComponent } from './components/chat-header/chat-header.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { StudentChatComponent } from './components/student-chat/student-chat.component';
@@ -25,6 +26,7 @@ import { SafePipe } from './pipes/safe.pipe';
   declarations: [
     AppComponent,
     ChatComponent,
+    ChatHeaderComponent,
     HeaderComponent,
     LandingPageComponent,
     StudentChatComponent,
