@@ -32,6 +32,10 @@ export class TeacherChatComponent implements OnInit, OnDestroy {
       this.id = data.id;
     });
 
+    this.connection = this.websocket.addListener('disconnect').subscribe((data: any) => {
+      this.disconnect();
+    });
+
     this.connection = this.websocket.addListener('message').subscribe((data: any) => {
       this.addMessage(data);
     });

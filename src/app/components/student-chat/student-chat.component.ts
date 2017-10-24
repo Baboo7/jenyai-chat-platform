@@ -28,6 +28,10 @@ export class StudentChatComponent implements OnInit, OnDestroy {
       this.id = data.id;
     });
 
+    this.connection = this.websocket.addListener('disconnect').subscribe((data: any) => {
+      this.disconnect();
+    });
+
     this.connection = this.websocket.addListener('message').subscribe((data: any) => {
       let msg = Parser.format(data, this.id);
       if (msg !== null) { this.messages.push(msg); }
