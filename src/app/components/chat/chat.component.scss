@@ -17,31 +17,63 @@
   @include flex(0,0,auto);
   padding: 0 1em;
 
-  div {
+  > div {
     @include display-flex();
     border-top: 1px solid $grey;
     padding: 1em 0;
+  }
+}
 
-    #input-bar {
-      @include flex-grow(1);
-      padding: 1em;
-      @include border-radius-4(5px,0,0,5px);
-      border: 1px solid $grey;
-    }
+#input-bar {
+  @include flex-grow(1);
+  padding: 1em;
+  border: 1px solid $grey;
+}
 
-    #send-button {
-      @include flex(0,0,auto);
-      padding: 1em;
-      @include border-radius-4(0,5px,5px,0);
-      background-color: $white;
-      color: $grey-d;
-      border: 1px solid $grey;
-      border-left: none;
+#send-button {
+  @include flex(0,0,auto);
+  padding: 1em;
+  @include border-radius-4(0,5px,5px,0);
+  background-color: $white;
+  color: $grey-d;
+  border: 1px solid $grey;
+  border-left: none;
+  cursor: pointer;
 
-      &:hover {
-        background-color: $color-1;
-        color: $white;
-      }
+  &:hover {
+    background-color: $color-1;
+    color: $white;
+  }
+}
+
+#record-button {
+  @include flex(0,0,auto);
+  padding: 1em;
+  @include border-radius-4(5px,0,0,5px);
+  background-color: $white;
+  color: $grey-d;
+  border: 1px solid $grey;
+  border-right: none;
+  cursor: pointer;
+
+  svg {
+    fill: $grey;
+
+    &[class*='recording'] {
+      fill: $red;
+      @include animation('expand', 1s, 0, ease-in-out, infinite, forwards);
     }
   }
+
+  &:hover {
+    svg {
+      fill: $red;
+    }
+  }
+}
+
+@keyframes expand {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+  100% { transform: scale(1); }
 }

@@ -10,6 +10,11 @@
 
 <div id="input-container">
   <div>
+    <button (click)="activateSpeechRecognition()" id="record-button">
+      <svg [class.recording]="recording" width="20" height="20">
+        <circle cx="10" cy="10" r="8" />
+      </svg>
+    </button>
     <input [value]="userInput" (keydown)="handleKeyDown($event)" (input)="handleInput($event)" id="input-bar" placeholder="Aa" />
     <button (click)="sendMessage()" id="send-button">Send</button>
   </div>
