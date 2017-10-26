@@ -2,9 +2,13 @@
 @import "../../../styles/metrics.scss";
 @import "../../../styles/mixins.scss";
 
+/*******************************/
+/*  Default HTML tags
+/*******************************/
+
 section {
   position: relative;
-  padding: 4em 0;
+  padding: 1em 0;
 }
 
 h1 {
@@ -21,13 +25,24 @@ p {
 }
 
 a,
+a:visited {
+  color: $white;
+
+  font-size: 1.5em;
+}
+
+a[class*="button"],
 button {
-  background-color: rgba(0,0,0,0);
+  display: inline-block;
+  box-sizing: border-box;
   padding: 1.5em 6em;
-  cursor: pointer;
+
+  background-color: rgba(0,0,0,0);
   @include border-radius-1(5px);
   border-width: 2px;
   border-style: solid;
+  cursor: pointer;
+
   font-weight: bold;
   font-size: 1em;
   text-decoration: none;
@@ -43,35 +58,19 @@ button {
   }
 }
 
-div[class*='content'] {
-  width: 60%;
-  margin: 0 auto;
-  padding: 5px 0;
-}
-
-div[class*='row'] {
-  @include display-flex();
-}
-
-div[class*='row-reverse'] {
-  @include display-flex-row-reverse();
-}
-
-div[class*='column-centered'] {
-  @include display-flex();
-  @include flex-flow-column();
-  @include align-items-center();
-}
-
 img {
   max-height: 250px;
   max-width: 250px;
 
   &[class*='square'] {
-    height: 250px;
-    width: 250px;
+    height: 200px;
+    width: 200px;
   }
 }
+
+/*******************************/
+/*  Abstract classes
+/*******************************/
 
 .background-abst {
   position: absolute;
@@ -80,12 +79,135 @@ img {
   bottom: 0;
   left: 0;
   z-index: -100;
+
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
+.col-abst {
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0 5px;
+  float: left;
+}
+
+.bg-ptrn-abst {
+  position: absolute;
+  z-index: -10;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  background-image: url('../../../assets/pattern.jpg');
+  @include filter-blur(1px);
+  opacity: 0.1;
+}
+
+/*******************************/
+/*  Building classes
+/*******************************/
+
+.margin {
+  margin: 0.5em;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.intrinsic-container {
+	position: relative;
+	padding-bottom: 56.25%;
+	height: 0;
+}
+
+.intrinsic-element {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+/*******************************/
+/*  Building div
+/*******************************/
+
+div[class*='content'] {
+  box-sizing: border-box;
+  margin: 0 auto;
+  margin-bottom: 5px;
+  width: 60%;
+}
+
+div[class*='flex'] {
+  @include display-flex();
+}
+
+div[class*='content-center'] {
+  @include justify-content-center();
+  @include align-items-center();
+}
+
+div[class*='row-reverse'] {
+  @include display-flex-row-reverse();
+}
+
+div[class*='row-centered'] {
+  @include align-items-center();
+}
+
+div[class*='column-centered'] {
+  @include flex-flow-column();
+  @include align-items-center();
+}
+
+div[class*='col-25'] {
+  @extend .col-abst;
+  width: 25%;
+}
+
+div[class*='col-33'] {
+  @extend .col-abst;
+  width: 33%;
+}
+
+div[class*='col-50'] {
+  @extend .col-abst;
+  width: 50%;
+}
+
+div[class*='col-66'] {
+  @extend .col-abst;
+  width: 66%;
+}
+
+div[class*='col-75'] {
+  @extend .col-abst;
+  width: 75%;
+}
+
+div[class*='col-100'] {
+  @extend .col-abst;
+  width: 100%;
+}
+
+div[class*='clear'] {
+  clear: both;
+}
+
+/*******************************/
+/*  Sections
+/*******************************/
+
 #banner {
+  box-sizing: border-box;
   padding: 30vh 0;
 
   .background {
@@ -95,19 +217,11 @@ img {
   }
 }
 
-#slogan {
+#video-presentation {
   position: relative;
 
   .bg-ptrn {
-    position: absolute;
-    z-index: -10;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-image: url('../../../assets/pattern.jpg');
-    opacity: 0.1;
-    @include filter-blur(1px);
+    @extend .bg-ptrn-abst;
   }
 
   .bg-clr {
@@ -117,7 +231,29 @@ img {
     right: 0;
     bottom: 0;
     left: 0;
+
     @include linear-gradient(-50deg, $color-1-l, $color-1);
+  }
+}
+
+#features {
+  .background {
+    @extend .background-abst;
+    background-image: url('../../../assets/bg-features.png');
+  }
+
+  a {
+    &[class*="prim"] {
+      background-color: $red;
+      border-color: $white;
+      color: $white;
+    }
+
+    &:hover {
+      background-color: $white;
+      border-color: $white;
+      color: $red;
+    }
   }
 }
 
@@ -141,15 +277,7 @@ img {
   position: relative;
 
   .bg-ptrn {
-    position: absolute;
-    z-index: -10;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-image: url('../../../assets/pattern.jpg');
-    opacity: 0.1;
-    @include filter-blur(1px);
+    @extend .bg-ptrn-abst;
   }
 
   .bg-clr {
@@ -159,103 +287,81 @@ img {
     right: 0;
     bottom: 0;
     left: 0;
+
     @include linear-gradient(-50deg, $color-3-l, $color-3);
   }
 }
 
-.col {
-  @include display-flex();
-  @include flex-flow-column();
-  @include flex-flow-wrap();
-  padding: 5px 0;
-  box-sizing: border-box;
-}
+#footer {
+  position: relative;
 
-.center-content {
-  @include justify-content-center();
-  @include align-items-center();
-}
+  .bg-ptrn {
+    @extend .bg-ptrn-abst;
+  }
 
-.margin {
-  margin: 1em;
-}
+  .bg-clr {
+    position: absolute;
+    z-index: -10;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 
-.col-25 {
-  @extend .col;
-  width: 25%;
-}
-
-.col-33 {
-  @extend .col;
-  width: 33%;
-}
-
-.col-50 {
-  @extend .col;
-  width: 50%;
-}
-
-.col-66 {
-  @extend .col;
-  width: 66%;
-}
-
-.col-75 {
-  @extend .col;
-  width: 75%;
-}
-
-.col-100 {
-  @extend .col;
-  width: 100%;
-}
-
-.center-text {
-  text-align: center;
-}
-
-.white {
-  color: white;
+    background-color: $black;
+  }
 }
 
 @media screen and (max-width: $tablet-width) {
   section,
   div[class*='content'],
   #banner,
-  .col {
+  .col-abst {
     padding-left: 0;
     padding-right: 0;
   }
 
   div[class*='content'] {
     width: 100%;
-    margin: auto;
   }
 
   div[class*='row'],
   div[class*='column-centered'],
-  .col
-  {
+  .col-abst {
     @include flex-flow-column();
     @include align-items-center();
+  }
+
+  div[class*='col-25'],
+  div[class*='col-33'],
+  div[class*='col-50'],
+  div[class*='col-66'],
+  div[class*='col-75'],
+  div[class*='col-100'] {
+    display: block;
+    width: 100%;
+
+    text-align: center;
   }
 }
 
 /************************** FORM ****************************/
 
 form button {
-  width: 100%;
+  box-sizing: border-box;
   margin-top: 1em;
   padding: 1.5em 6em;
-  cursor: pointer;
+  width: 100%;
+
+  background-color: rgba(0,0,0,0);
+  color: $color-3;
   @include border-radius-1(5px);
+  border-color: $color-3;
   border-width: 2px;
   border-style: solid;
+  cursor: pointer;
+
   font-weight: bold;
   font-size: 1em;
-  background-color: rgba(0,0,0,0);
-  border-color: $color-3;
-  color: $color-3;
 
   &:hover {
     background-color: $color-3;
@@ -265,38 +371,41 @@ form button {
   &[disabled],
   &[disabled]:hover {
     background-color: rgba(0,0,0,0);
-    border-color: $grey-d;
     color: $grey-d;
+    border-color: $grey-d;
+
     opacity: 0.5;
   }
 }
 
 form {
-  width: 100%;
   margin: 0 auto;
   margin-top: 2em;
   padding: 1em 0;
+  width: 100%;
+
   @include border-radius-1(10px);
 
   > div {
-    width: 80%;
     margin: 0 auto;
     margin-bottom: 1em;
+    width: 80%;
 
     label {
       display: block;
-      width: 100%;
       margin-bottom: 0.25em;
+      width: 100%;
+
       color: $grey-d;
     }
 
     input,
     textarea {
-      box-sizing: border-box;
       display: block;
-      width: 100%;
+      box-sizing: border-box;
       padding: 1em 0;
       padding-left: 1em;
+      width: 100%;
 
       @include border-radius-1(5px);
       border: 1px solid $grey;
@@ -304,8 +413,9 @@ form {
     }
 
     textarea {
-      resize: vertical;
       min-height: 3em;
+
+      resize: vertical;
     }
   }
 }
@@ -320,10 +430,12 @@ form {
 
 .errors {
   box-sizing: border-box;
-  width: 100%;
   padding: 1em 0;
-  text-indent: 1em;
+  width: 100%;
+
   background-color: $red;
   color: $white;
   @include border-radius-1(5px);
+
+  text-indent: 1em;
 }

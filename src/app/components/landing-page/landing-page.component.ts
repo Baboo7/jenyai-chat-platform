@@ -17,6 +17,7 @@ export class LandingPageComponent {
   private msg: string;
   private emailPatrn = /([A-Z]|[a-z]|[0-9]|-|_)+@([A-Z]|[a-z]|[0-9]|-|_)+\.([a-z])/;
   private phonePatrn = /[0-9]/;
+  private url: string = 'https://player.vimeo.com/video/239555363?title=0&byline=0';
 
   constructor(private http: HttpClient) { }
 
@@ -30,7 +31,7 @@ export class LandingPageComponent {
 
     this.http.post(`${environment.api}/contact`, body)
     .subscribe((data: any) => {
-      if (data.success) {  
+      if (data.success) {
         this.contacted = true;
       }
     })
