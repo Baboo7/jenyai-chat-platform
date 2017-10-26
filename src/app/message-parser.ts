@@ -28,6 +28,11 @@ export class Parser {
       if (payload.platform === 'vimeo') {
         obj.url = `https://player.vimeo.com/video/${payload.id}`;
         return obj;
+      } else if (payload.platform === 'ytb') {
+        obj.url = `https://www.youtube.com/embed/${payload.id}?`;
+        if (payload.start) obj.url += `&start=${payload.start}`;
+        if (payload.end) obj.url += `&end=${payload.end}`;
+        return obj;
       }
     }
 
