@@ -3,59 +3,63 @@
 
 <app-header></app-header>
 
-<form (ngSubmit)="joinSession()" #teacherForm="ngForm">
-  <h1> Teacher </h1>
+<div id="content">
+  <form (ngSubmit)="joinSession()" #teacherForm="ngForm">
+    <h1> Teacher </h1>
 
-  <div *ngIf="serverMsg" class="errors"> {{serverMsg}} </div>
+    <div *ngIf="serverMsg" class="errors"> {{serverMsg}} </div>
 
-  <div>
-    <label for="name"> Name </label>
-    <input
-      id="name"
-      name="name"
-      type="text"
-      placeholder="name"
-      [(ngModel)]="name"
-      #nameInput="ngModel"
-      required
-      [pattern]="namePatrn" >
-    <div *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)">
-      <div class="errors" *ngIf="nameInput.errors.required"> Your name is required </div>
-      <div class="errors" *ngIf="nameInput.errors.pattern"> Your name must begin with a capital letter </div>
+    <div>
+      <label for="name"> Name </label>
+      <input
+        id="name"
+        name="name"
+        type="text"
+        placeholder="name"
+        [(ngModel)]="name"
+        #nameInput="ngModel"
+        required
+        [pattern]="namePatrn" >
+      <div *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)">
+        <div class="errors" *ngIf="nameInput.errors.required"> Your name is required </div>
+        <div class="errors" *ngIf="nameInput.errors.pattern"> Your name must begin with a capital letter </div>
+      </div>
     </div>
-  </div>
-  <div>
-    <label for="roomId"> Classroom id </label>
-    <input
-      id="roomId"
-      name="roomId"
-      type="text"
-      placeholder="classroom id"
-      [(ngModel)]="roomId"
-      #roomIdInput="ngModel"
-      required
-      [pattern]="roomIdPatrn" >
-    <div *ngIf="roomIdInput.invalid && (roomIdInput.dirty || roomIdInput.touched)">
-      <div class="errors" *ngIf="roomIdInput.errors.required"> The classroom id is required </div>
-      <div class="errors" *ngIf="roomIdInput.errors.pattern"> The classroom id must be composed of uppercase letters only </div>
+    <div>
+      <label for="roomId"> Classroom id </label>
+      <input
+        id="roomId"
+        name="roomId"
+        type="text"
+        placeholder="classroom id"
+        [(ngModel)]="roomId"
+        #roomIdInput="ngModel"
+        required
+        [pattern]="roomIdPatrn" >
+      <div *ngIf="roomIdInput.invalid && (roomIdInput.dirty || roomIdInput.touched)">
+        <div class="errors" *ngIf="roomIdInput.errors.required"> The classroom id is required </div>
+        <div class="errors" *ngIf="roomIdInput.errors.pattern"> The classroom id must be composed of uppercase letters only </div>
+      </div>
     </div>
-  </div>
-  <div>
-    <label for="password"> Password </label>
-    <input
-      id="password"
-      name="password"
-      type="password"
-      placeholder="password"
-      [(ngModel)]="password"
-      #passwordInput="ngModel"
-      required >
-    <div *ngIf="passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)">
-      <div class="errors" *ngIf="passwordInput.errors.required"> The password id is required </div>
+    <div>
+      <label for="password"> Password </label>
+      <input
+        id="password"
+        name="password"
+        type="password"
+        placeholder="password"
+        [(ngModel)]="password"
+        #passwordInput="ngModel"
+        required >
+      <div *ngIf="passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)">
+        <div class="errors" *ngIf="passwordInput.errors.required"> The password id is required </div>
+      </div>
     </div>
-  </div>
 
-  <div>
-    <button type="submit" [disabled]="!teacherForm.form.valid"> Join session </button>
-  </div>
-</form>
+    <div>
+      <button type="submit" [disabled]="!teacherForm.form.valid"> Join session </button>
+    </div>
+  </form>
+
+  <a href="https://waitinglist.jenyai.com/"> Not registered yet? </a>
+</div>

@@ -31,19 +31,38 @@
   z-index: -4;
 }
 
+#content {
+  box-sizing: border-box;
+  width: 400px;
+  margin: 0 auto;
+  margin-top: 2em;
+  padding: 2em;
+}
+
+a {
+  display: block;
+  margin-top: 2em;
+
+  color: white;
+
+  text-align: center;
+}
+
 button {
   width: 100%;
   margin-top: 1em;
-  padding: 1.5em 6em;
-  cursor: pointer;
+  padding: 1.5em 0;
+
+  background-color: rgba(0,0,0,0);
+  color: #FFFFFF;
   @include border-radius-1(5px);
+  border-color: #FFFFFF;
   border-width: 2px;
   border-style: solid;
+  cursor: pointer;
+
   font-weight: bold;
   font-size: 1em;
-  background-color: rgba(0,0,0,0);
-  border-color: #FFFFFF;
-  color: #FFFFFF;
 
   &:hover {
     background-color: #FFFFFF;
@@ -60,11 +79,6 @@ button {
 }
 
 form {
-  width: 400px;
-  margin: 0 auto;
-  margin-top: 2em;
-  padding: 1em 0;
-  @include border-radius-1(10px);
 
   h1 {
     text-align: center;
@@ -73,7 +87,6 @@ form {
   }
 
   > div {
-    width: 80%;
     margin: 0 auto;
     margin-bottom: 1em;
 
@@ -114,9 +127,9 @@ form {
 }
 
 @media screen and (max-width: $tablet-width) {
-  form {
+
+  #content {
     width: 100%;
     margin-top: 0;
-    @include border-radius-1(0px);
   }
 }
