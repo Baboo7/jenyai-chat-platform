@@ -2,7 +2,6 @@ import { Component, Output, EventEmitter, OnInit, OnDestroy } from '@angular/cor
 
 import { WebsocketService } from '../../services/websocket.service';
 import { TokenManager } from '../../services/token-manager.service';
-import { Parser } from '../../message-parser';
 import { StudentInterface } from './student.interface';
 
 @Component({
@@ -95,16 +94,13 @@ export class TeacherChatComponent implements OnInit, OnDestroy {
   }
 
   addMessage(message): void {
-    let msg = Parser.format(message, this.id);
-    if (msg !== null) {
-      let emitterId = msg.emitterType === 'student' ? msg.emitter : msg.recipient;
-      this.messages[emitterId].push(msg);
+    let emitterId = message.emitterType === 'student' ? message.emitter : message.recipient;
+    this.messages[emitterId].push(message);
 
-      if (emitterId !== this.selectedStudent.id) {
-        let student = this.students.find(s => s.id === emitterId);
-        if (student) {
-          student.unseen++;
-        }
+    if (emitterId !== this.selectedStudent.id) {
+      let student = this.students.find(s => s.id === emitterId);
+      if (student) {
+        student.unseen++;
       }
     }
   }

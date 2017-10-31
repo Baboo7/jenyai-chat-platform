@@ -2,7 +2,6 @@ import { Component, Output, EventEmitter, OnInit, OnDestroy } from '@angular/cor
 
 import { WebsocketService } from '../../services/websocket.service';
 import { TokenManager } from '../../services/token-manager.service';
-import { Parser } from '../../message-parser';
 
 @Component({
   selector: 'student-chat',
@@ -33,8 +32,7 @@ export class StudentChatComponent implements OnInit, OnDestroy {
     });
 
     this.connection = this.websocket.addListener('message').subscribe((data: any) => {
-      let msg = Parser.format(data, this.id);
-      if (msg !== null) { this.messages.push(msg); }
+      this.messages.push(data);
     });
 
     this.connection = this.websocket.addListener('typing-on').subscribe((data: any) => {
