@@ -1,7 +1,7 @@
 <div #convTainer id="conversation-container">
-  <div *ngFor="let msg of messages">
-    <text-message *ngIf="msg.type === 'text'" [align]="msg.align" [text]="msg.text"></text-message>
-    <video-message *ngIf="msg.type === 'video'" [align]="msg.align" [url]="msg.url"></video-message>
+  <div *ngFor="let metamsg of messages">
+    <text-message *ngIf="metamsg.message.type === 'text'" [align]="metamsg.align" [text]="metamsg.message.text"></text-message>
+    <video-message *ngIf="metamsg.message.type === 'video'" [align]="metamsg.align" [url]="metamsg.message.url"></video-message>
   </div>
 
   <typing-indicator *ngIf="isEmitterTyping"> </typing-indicator>
