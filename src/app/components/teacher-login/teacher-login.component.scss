@@ -97,11 +97,14 @@ form {
       color: white;
     }
 
-    input {
+    input,
+    select {
       box-sizing: border-box;
       display: block;
       width: 100%;
       padding: 1em;
+
+      background-color: $white;
       @include border-radius-1(5px);
       border: 1px solid $grey;
     }
