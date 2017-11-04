@@ -1,7 +1,9 @@
-<chat-header (fireDisconnection)="disconnect()"></chat-header>
+<div id="container" [style.height.px]="cssHeight">
+  <chat-header (fireDisconnection)="disconnect()"></chat-header>
 
-<chat
-  [isEmitterTyping]="isEmitterTyping"
-  [messages]="messages"
-  [recipient]="''" >
-</chat>
+  <chat
+    [isEmitterTyping]="isEmitterTyping"
+    [messages]="messages"
+    [recipient]="''" >
+  </chat>
+</div>

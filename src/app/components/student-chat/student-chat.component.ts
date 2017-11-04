@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, HostListener, OnInit, OnDestroy } from '@angular/core';
 
 import { WebsocketService } from '../../services/websocket.service';
 import { TokenManagerService } from '../../services/token-manager.service';
@@ -16,6 +16,10 @@ export class StudentChatComponent implements OnInit, OnDestroy {
   private id: string;
   private isEmitterTyping: boolean = false;
   private messages = [ ];
+
+  private cssHeight: number;
+  private debounceTime: number = 50;
+  private resizeTimeout: number;
 
   constructor(
     private websocket: WebsocketService,
@@ -52,6 +56,25 @@ export class StudentChatComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.connection.unsubscribe();
     this.websocket.disconnect();
+  }
+
+  /*  Resize the size of the main container on window resize.
+
+      PARAMS
+        event (event object): event fired on window resize
+
+      RETURN
+        none
+  */
+  @HostListener('window:resize', [ '$event' ])
+  private onWindowResize(event): void {
+    // debounce resize, wait for resize to finish before doing stuff
+    if (this.resizeTimeout) {
+      clearTimeout(this.resizeTimeout);
+    }
+    this.resizeTimeout = setTimeout((() => {
+      this.cssHeight = event.target.innerHeight;
+    }).bind(this), this.debounceTime);
   }
 
   /*  Disconnect the user from the room.
