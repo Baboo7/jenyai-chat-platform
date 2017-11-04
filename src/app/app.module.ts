@@ -12,15 +12,22 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { StudentChatComponent } from './components/student-chat/student-chat.component';
 import { StudentLoginComponent } from './components/student-login/student-login.component';
 import { StudentsListComponent } from './components/students-list/students-list.component';
-import { StudentSpaceComponent } from './components/student-space/student-space.component';
 import { TeacherChatComponent } from './components/teacher-chat/teacher-chat.component';
 import { TextComponent } from './components/chat/messages/text/text.component';
 import { TeacherLoginComponent } from './components/teacher-login/teacher-login.component';
-import { TeacherSpaceComponent } from './components/teacher-space/teacher-space.component';
 import { TypingIndicatorComponent } from './components/chat/messages/typing-indicator/typing-indicator.component';
 import { VideoComponent } from './components/chat/messages/video/video.component';
 
+// Guards
+import { StudentAuthGuard } from './guards/student-auth.guard';
+import { TeacherAuthGuard } from './guards/teacher-auth.guard';
+
+// Pipes
 import { SafePipe } from './pipes/safe.pipe';
+
+// Services
+import { AuthenticationService } from './services/authentication.service';
+import { TokenManager } from './services/token-manager.service';
 
 @NgModule({
   declarations: [
@@ -32,11 +39,9 @@ import { SafePipe } from './pipes/safe.pipe';
     StudentChatComponent,
     StudentLoginComponent,
     StudentsListComponent,
-    StudentSpaceComponent,
     TeacherChatComponent,
     TextComponent,
     TeacherLoginComponent,
-    TeacherSpaceComponent,
     TypingIndicatorComponent,
     VideoComponent,
 
@@ -50,11 +55,21 @@ import { SafePipe } from './pipes/safe.pipe';
       [
         {
           path: 'student',
-          component: StudentSpaceComponent
+          component: StudentLoginComponent
+        },
+        {
+          path: 'student/chat',
+          component: StudentChatComponent,
+          canActivate: [ StudentAuthGuard ]
         },
         {
           path: 'teacher',
-          component: TeacherSpaceComponent
+          component: TeacherLoginComponent
+        },
+        {
+          path: 'teacher/chat',
+          component: TeacherChatComponent,
+          canActivate: [ TeacherAuthGuard ]
         },
         {
           path: '',
@@ -63,7 +78,13 @@ import { SafePipe } from './pipes/safe.pipe';
       ]
     )
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    StudentAuthGuard,
+    TeacherAuthGuard,
+
+    AuthenticationService,
+    TokenManager
+  ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }

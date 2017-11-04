@@ -1,15 +1,15 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 import Utils from '../../utils';
 import { environment } from '../../../environments/environment';
-import { TokenManager } from '../../services/token-manager.service';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'student-login',
   templateUrl: './student-login.component.html',
-  styleUrls: ['./student-login.component.scss'],
-  providers: [ TokenManager ]
+  styleUrls: ['./student-login.component.scss']
 })
 export class StudentLoginComponent implements OnInit {
 
@@ -19,11 +19,11 @@ export class StudentLoginComponent implements OnInit {
   private serverMsg: string = ''; // Message received from the server
   private roomIdPatrn = /^([A-Z]|[a-z]|[0-9]|-|_|\s)+$/; // Regex for uppercase validation
 
-  @Input() private connected: boolean;
-
-  @Output() private connectedChange: EventEmitter<boolean> = new EventEmitter();
-
-  constructor(private http: HttpClient, private tokenManager: TokenManager) { }
+  constructor(
+    private http: HttpClient,
+    private auth: AuthenticationService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.http.get(`${environment.api}/rooms`).subscribe(
@@ -50,8 +50,7 @@ export class StudentLoginComponent implements OnInit {
     this.http.post(`${environment.api}/rooms/connect/student`, body).subscribe(
       (data: any) => {
         if(data.success) {
-          this.tokenManager.storeToken(data.token);
-          this.connectedChange.emit(true);
+          this.auth.authenticateStudent(data.token);
         } else {
           this.serverMsg = data['message'];
         }

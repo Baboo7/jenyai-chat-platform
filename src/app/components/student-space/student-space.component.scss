@@ -1,7 +1,0 @@
-@import '../../../styles/mixins';
-
-:host {
-  @include flex-grow (1);
-  @include display-flex ();
-  @include flex-flow-column ();
-}
