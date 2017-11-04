@@ -3,11 +3,15 @@
 @import '../../../styles/mixins.scss';
 
 :host {
+  box-sizing: border-box;
   z-index: 100;
-  background-color: $white;
-  padding: 1em;
+  padding: 1em 0;
+
   @include flex(0,0,auto);
   @include display-flex();
+  @include align-items-center();
+
+  background-color: $white;
   @include box-shadow(0,3px,3px,$grey);
 }
 
@@ -26,27 +30,23 @@ nav {
   @include display-flex();
   @include align-items-center();
   justify-content: flex-end;
+}
 
-  a,
-  a:hover,
-  a:visited
-  {
-    display: inline-block;
-    margin-right: 1em;
-    color: $color-1;
-    text-decoration: none;
-    font-weight: bold;
-  }
+.button-abst {
+  box-sizing: border-box;
+  padding: 1.5em 3em;
+
+  border-width: 2px;
+  border-style: solid;
+  @include border-radius-1(5px);
+  cursor: pointer;
+
+  font-weight: bold;
 }
 
 button[class*="teacher"] {
-  padding: 1.5em 3em;
-  cursor: pointer;
-  @include border-radius-1(5px);
-  border-width: 2px;
-  border-style: solid;
-  font-weight: bold;
-  font-size: 1em;
+  @extend .button-abst;
+
   margin-left: 10px;
 
   background-color: rgba(0,0,0,0);
@@ -61,17 +61,13 @@ button[class*="teacher"] {
 }
 
 button[class*="student"] {
-  padding: 1.5em 3em;
-  cursor: pointer;
-  @include border-radius-1(5px);
-  border-width: 2px;
-  border-style: solid;
-  font-weight: bold;
-  font-size: 1em;
+  @extend .button-abst;
+
   margin-left: 10px;
+
   background-color: rgba(0,0,0,0);
-  border-color: $color-1;
   color: $color-1;
+  border-color: $color-1;
 
   &:hover {
     background-color: $color-1;
@@ -81,12 +77,21 @@ button[class*="student"] {
 }
 
 @media screen and (max-width: $tablet-width) {
-  #brand {
+  :host {
+    @include flex-flow-column();
+  }
+
+  #logo {
     display: none;
   }
 
-  #logo,
   nav {
-    width: 50%;
+    display: block;
+    width: 100%;
+
+    button {
+      margin: 5px 0;
+      width: 100%;
+    }
   }
 }

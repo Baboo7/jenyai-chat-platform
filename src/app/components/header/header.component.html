@@ -6,7 +6,7 @@
   <a routerLink="/"><img src="../../../assets/jenyai.png" alt="Anne.ai logo" height="100px" /></a>
 </div>
 
-<nav>
+<nav *ngIf="displayNav">
   <button class="teacher" routerLink="/teacher/chat"> Teacher </button>
   <button class="student" routerLink="/student/chat"> Student </button>
 </nav>

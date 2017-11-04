@@ -12,23 +12,12 @@ section {
 }
 
 h1 {
-  font-size: 3em;
   text-shadow: 3px 3px 5px $grey;
-}
-
-h3 {
-  font-size: 2.5em;
-}
-
-p {
-  font-size: 1.5em;
 }
 
 a,
 a:visited {
   color: $white;
-
-  font-size: 1.5em;
 }
 
 a[class*="button"],
@@ -44,7 +33,6 @@ button {
   cursor: pointer;
 
   font-weight: bold;
-  font-size: 1em;
   text-decoration: none;
 
   &[class*="prim"] {
@@ -59,12 +47,12 @@ button {
 }
 
 img {
-  max-height: 250px;
-  max-width: 250px;
+  max-height: 150px;
+  max-width: 150px;
 
   &[class*='square'] {
-    height: 200px;
-    width: 200px;
+    height: 150;
+    width: 150;
   }
 }
 
@@ -361,7 +349,6 @@ form button {
   cursor: pointer;
 
   font-weight: bold;
-  font-size: 1em;
 
   &:hover {
     background-color: $color-3;
