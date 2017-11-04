@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 
 import Utils from '../../utils';
-import { environment } from '../../../environments/environment';
+
 import { AuthenticationService } from '../../services/authentication.service';
+import { RoomService } from '../../services/room.service';
 
 @Component({
   selector: 'student-login',
@@ -20,41 +19,28 @@ export class StudentLoginComponent implements OnInit {
   private roomIdPatrn = /^([A-Z]|[a-z]|[0-9]|-|_|\s)+$/; // Regex for uppercase validation
 
   constructor(
-    private http: HttpClient,
-    private auth: AuthenticationService,
-    private router: Router
+    private authService: AuthenticationService,
+    private roomService: RoomService
   ) { }
 
   ngOnInit(): void {
-    this.http.get(`${environment.api}/rooms`).subscribe(
-      (data: any) => {
-        if(data.success) {
-          this.roomsName = data.rooms;
-        }
-      }
-    );
+    this.roomService.getAllRoomsName().subscribe((roomsName: Array<string>) => {
+      this.roomsName = roomsName;
+    });
   }
 
   joinSession(): void {
-    this.serverMsg = '';
-
     if (Utils.isEmpty(this.name) || Utils.isEmpty(this.roomId)) {
       return;
     }
 
-    let body = {
+    let roomInfo = {
       roomName: this.roomId,
       userName: this.name
     };
 
-    this.http.post(`${environment.api}/rooms/connect/student`, body).subscribe(
-      (data: any) => {
-        if(data.success) {
-          this.auth.authenticateStudent(data.token);
-        } else {
-          this.serverMsg = data['message'];
-        }
-      }
-    );
+    this.authService.authenticateStudent(roomInfo).subscribe((serverMsg) => {
+      this.serverMsg = serverMsg;
+    });
   }
 }

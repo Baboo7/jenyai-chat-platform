@@ -1,13 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { TokenManager } from './token-manager.service';
+import { Observable } from 'rxjs/Observable';
+
+import { RoomService } from './room.service';
+import { TokenManagerService } from './token-manager.service';
+
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthenticationService {
 
   constructor(
-    private tokenManager: TokenManager,
+    private roomService: RoomService,
+    private tokenManagerService: TokenManagerService,
     private router: Router
   ) { }
 
@@ -15,17 +21,27 @@ export class AuthenticationService {
   /*  interface
   /**************************/
 
-  /*  Authenticate student and redirect to chat interface.
+  /*  Try to authenticate student.
 
       PARAMS
-        token (string): token to store in local storage
+        roomInfo (object): information to connect to a room
 
       RETURN
-        none
+        (Observable)
   */
-  public authenticateStudent(token): void {
-    this.tokenManager.storeToken(token);
-    this.router.navigate([ '/student/chat' ]);
+  public authenticateStudent(roomInfo): Observable<any> {
+    let observable = new Observable(observer => {
+      this.roomService.connectStudent(roomInfo).subscribe((data: any) => {
+        if(data.success) {
+          this.tokenManagerService.storeToken(data.token);
+          this.router.navigate([ '/student/chat' ]);
+        } else {
+          observer.next(data.message);
+        }
+      });
+    });
+
+    return observable;
   }
 
   /*  Disconnect student and redirect to login interface.
@@ -37,21 +53,31 @@ export class AuthenticationService {
         none
   */
   public disconnectStudent(): void {
-    this.tokenManager.removeToken();
+    this.tokenManagerService.removeToken();
     this.router.navigate([ '/student' ]);
   }
 
-  /*  Authenticate teacher and redirect to chat interface.
+  /*  Try to authenticate teacher.
 
       PARAMS
-        token (string): token to store in local storage
+        roomInfo (object): information to connect to a room
 
       RETURN
-        none
+        (Observable)
   */
-  public authenticateTeacher(token): void {
-    this.tokenManager.storeToken(token);
-    this.router.navigate([ '/teacher/chat' ]);
+  public authenticateTeacher(roomInfo): Observable<any> {
+    let observable = new Observable(observer => {
+      this.roomService.connectTeacher(roomInfo).subscribe((data: any) => {
+        if(data.success) {
+          this.tokenManagerService.storeToken(data.token);
+          this.router.navigate([ '/teacher/chat' ]);
+        } else {
+          observer.next(data.message);
+        }
+      });
+    });
+
+    return observable;
   }
 
   /*  Disconnect teacher and redirect to login interface.
@@ -63,7 +89,7 @@ export class AuthenticationService {
         none
   */
   public disconnectTeacher(): void {
-    this.tokenManager.removeToken();
+    this.tokenManagerService.removeToken();
     this.router.navigate([ '/teacher' ]);
   }
 }
