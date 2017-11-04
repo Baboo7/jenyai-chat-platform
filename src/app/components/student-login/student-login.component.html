@@ -1,5 +1,5 @@
-<div id="bg-pic"></div>
-<div id="bg-color-fltr"></div>
+<div id="bg-pic" [style.height.px]="cssHeight"></div>
+<div id="bg-color-fltr" [style.height.px]="cssHeight"></div>
 
 <app-header></app-header>
 
@@ -34,7 +34,7 @@
         #roomIdInput="ngModel"
         required
         [pattern]="roomIdPatrn" >
-        
+
         <option *ngFor="let room of roomsName" [value]="room" >{{ room }}</option>
       </select>
       <div *ngIf="roomIdInput.invalid && (roomIdInput.dirty || roomIdInput.touched)">

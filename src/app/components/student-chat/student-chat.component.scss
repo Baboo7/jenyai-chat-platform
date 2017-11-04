@@ -1,6 +1,6 @@
 @import '../../../styles/mixins.scss';
 
-:host {
+#container {
   height: 100vh;
   @include display-flex();
   @include flex-flow-column();

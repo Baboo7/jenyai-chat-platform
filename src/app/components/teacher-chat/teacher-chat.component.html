@@ -1,6 +1,4 @@
-<app-header [displayNav]="false"></app-header>
-
-<div id="content">
+<div id="container" [style.height.px]="cssHeight">
   <students-list
     [students]="students"
     [selectedStudent]="selectedStudent.id"
