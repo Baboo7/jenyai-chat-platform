@@ -12,7 +12,6 @@
     <chat
       [isEmitterTyping]="isEmitterTyping"
       [messages]="messages[selectedStudent.id]"
-      [recipient]="selectedStudent.id"
       [userInput]="selectedStudent.userInput"
 
       (userInputChange)="onUserInputChange($event)">

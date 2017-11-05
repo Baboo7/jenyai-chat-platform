@@ -12,10 +12,13 @@ import { AuthenticationService } from '../../services/authentication.service';
 })
 export class StudentChatComponent implements OnInit, OnDestroy {
 
-  private connection;
   private id: string;
   private isEmitterTyping: boolean = false;
   private messages = [ ];
+  private wordsPerMilliseconds: number = 260 / (60 * 1000);
+  private MaxDelay: number = 5 * 1000;
+  private defaultDelay: number = 1.5 * 1000;
+  private delayBetweenMessages: number = 1.5 * 1000;
 
   private cssHeight: number;
   private debounceTime: number = 50;
@@ -30,19 +33,23 @@ export class StudentChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.connection = this.websocket.addListener('init').subscribe((data: any) => {
+    this.websocket.addListener('init').subscribe((data: any) => {
       this.id = data.id;
     });
 
-    this.connection = this.websocket.addListener('message').subscribe((data: any) => {
-      this.messages.push(data);
+    this.websocket.addListener('message').subscribe((messages: any) => {
+      if (messages[0].emitterType === 'agent') {
+        this.simulateTyping(messages.reverse());
+      } else {
+        this.messages = this.messages.concat(messages);
+      }
     });
 
-    this.connection = this.websocket.addListener('typing-on').subscribe((data: any) => {
+    this.websocket.addListener('typing-on').subscribe((data: any) => {
       this.isEmitterTyping = true;
     });
 
-    this.connection = this.websocket.addListener('typing-off').subscribe((data: any) => {
+    this.websocket.addListener('typing-off').subscribe((data: any) => {
       this.isEmitterTyping = false;
     });
 
@@ -54,7 +61,6 @@ export class StudentChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.connection.unsubscribe();
     this.websocket.disconnect();
   }
 
@@ -87,5 +93,41 @@ export class StudentChatComponent implements OnInit, OnDestroy {
   */
   private disconnect(): void {
     this.auth.disconnectStudent();
+  }
+
+  /*  Simulate typing of a message stack.
+
+      PARAMS
+        messages (array of objects): stack of messages to add
+
+      RETURN
+        none
+  */
+  private simulateTyping(messages): void {
+    if (messages.length > 0) {
+      this.isEmitterTyping = true;
+
+      let delay;
+      let message = messages[messages.length - 1].message;
+      if (message.type === 'text') {
+        let nbWords = message.text.split(' ').length;
+        delay = nbWords / this.wordsPerMilliseconds;
+      }
+      else {
+        delay = this.defaultDelay;
+      }
+
+      if (delay > this.MaxDelay) {
+        delay = this.MaxDelay;
+      }
+
+      setTimeout(() => {
+        this.isEmitterTyping = false;
+        this.messages.push(messages.pop());
+        setTimeout(() => {
+          this.simulateTyping(messages);
+        }, this.delayBetweenMessages);
+      }, delay);
+    }
   }
 }

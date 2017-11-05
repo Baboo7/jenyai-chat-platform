@@ -9,7 +9,6 @@ import { WebsocketService } from '../../services/websocket.service';
 })
 export class StudentsListComponent implements OnInit, OnDestroy {
 
-  private connection;
   @Input() private students;
   @Input() private selectedStudent: string;
   @Output() selectedStudentChange: EventEmitter<string> = new EventEmitter();
@@ -19,13 +18,12 @@ export class StudentsListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.connection = this.websocket.addListener('connect-student').subscribe((data: any) => {
+    this.websocket.addListener('connect-student').subscribe((data: any) => {
       this.selectedStudentChange.emit(data.id);
     });
   }
 
   ngOnDestroy() {
-    this.connection.unsubscribe();
     this.websocket.disconnect();
   }
 

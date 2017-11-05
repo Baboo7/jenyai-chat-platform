@@ -38,10 +38,8 @@ export class WebsocketService {
       this.socket.on(event, (data) => {
         observer.next(data);
       });
-      return () => {
-        this.socket.disconnect();
-      };
-    })
+    });
+    
     return observable;
   }
 }

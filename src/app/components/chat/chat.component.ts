@@ -13,18 +13,22 @@ import Utils from '../../utils';
 export class ChatComponent implements AfterViewChecked, DoCheck, OnDestroy {
 
   private recording: boolean = false;
+  private recordSession;
   private totalMsgs: number = 0;
   private toScroll: boolean;
   private wasTyping: boolean = false;
 
-  @Input() private isEmitterTyping: boolean;
-  @Input() private recipient;
+  @Input() private isEmitterTyping: boolean = false;
+  private wasEmitterTyping: boolean = false;
   @Input() private messages;
   @Input() private userInput = '';
   @Output() userInputChange: EventEmitter<string> = new EventEmitter();
   @ViewChild('convTainer') private convTainer: ElementRef;
 
-  constructor(private websocket: WebsocketService, private speechRecognitionService: SpeechRecognitionService) { }
+  constructor(
+    private websocket: WebsocketService,
+    private speechRecognitionService: SpeechRecognitionService
+  ) { }
 
   ngAfterViewChecked() {
     if (this.toScroll) {
@@ -42,17 +46,24 @@ export class ChatComponent implements AfterViewChecked, DoCheck, OnDestroy {
       this.toScroll = true;
       this.totalMsgs = newTotalMsgs;
     }
+
+    if (!this.wasEmitterTyping && this.isEmitterTyping) {
+      this.toScroll = true;
+      this.wasEmitterTyping = true;
+    } else if (this.wasEmitterTyping && !this.isEmitterTyping) {
+      this.wasEmitterTyping = false;
+    }
   }
 
   ngOnDestroy() {
     this.speechRecognitionService.DestroySpeechObject();
   }
 
-  activateSpeechRecognition(): void {
-    this.recording = true;
+  toggleSpeechRecognition(): void {
+    this.recording = !this.recording;
 
     if (this.recording) {
-      this.speechRecognitionService.record()
+      this.recordSession = this.speechRecognitionService.record()
       .subscribe(
         //listener
         (value) => {
@@ -67,6 +78,8 @@ export class ChatComponent implements AfterViewChecked, DoCheck, OnDestroy {
           this.recording = false;
         }
       );
+    } else {
+      this.recordSession.unsubscribe();
     }
   }
 
@@ -76,7 +89,6 @@ export class ChatComponent implements AfterViewChecked, DoCheck, OnDestroy {
     }
 
     let msg = {
-      recipient: this.recipient,
       type: 'text',
       payload: this.userInput
     };

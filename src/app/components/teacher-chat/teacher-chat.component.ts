@@ -13,7 +13,6 @@ import { StudentInterface } from './student.interface';
 })
 export class TeacherChatComponent implements OnInit, OnDestroy {
 
-  private connection;
   private emitterType: string = 'teacher';
   private id: string;
   private isEmitterTyping: boolean = false;
@@ -34,15 +33,17 @@ export class TeacherChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.connection = this.websocket.addListener('init').subscribe((data: any) => {
+    this.websocket.addListener('init').subscribe((data: any) => {
       this.id = data.id;
     });
 
-    this.connection = this.websocket.addListener('message').subscribe((data: any) => {
-      this.addMessage(data);
+    this.websocket.addListener('message').subscribe((data: any) => {
+      data.forEach(msg => {
+        this.addMessage(msg);
+      });
     });
 
-    this.connection = this.websocket.addListener('typing-on').subscribe((data: any) => {
+    this.websocket.addListener('typing-on').subscribe((data: any) => {
       let emitter = data.emitter;
       let student = this.students.find(s => s.id === emitter);
       if (student) {
@@ -51,7 +52,7 @@ export class TeacherChatComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.connection = this.websocket.addListener('typing-off').subscribe((data: any) => {
+    this.websocket.addListener('typing-off').subscribe((data: any) => {
       let emitter = data.emitter;
       let student = this.students.find(s => s.id === emitter);
       if (student) {
@@ -60,7 +61,7 @@ export class TeacherChatComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.connection = this.websocket.addListener('new-student').subscribe((data: any) => {
+    this.websocket.addListener('new-student').subscribe((data: any) => {
       let newStudent: StudentInterface = {
         id: data.student.id,
         isTyping: false,
@@ -76,7 +77,7 @@ export class TeacherChatComponent implements OnInit, OnDestroy {
       });
     });
 
-    this.connection = this.websocket.addListener('del-student').subscribe((data: any) => {
+    this.websocket.addListener('del-student').subscribe((data: any) => {
       this.students = this.students.filter(student => student.id != data.student);
       if (this.selectedStudent.id === data.student) {
         this.selectedStudent = { id: '', isTyping: false, name: '', userInput: '', unseen: 0 };
@@ -92,7 +93,6 @@ export class TeacherChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.connection.unsubscribe();
     this.websocket.disconnect();
   }
 
