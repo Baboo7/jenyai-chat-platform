@@ -1,0 +1,36 @@
+@import '../../../../../styles/colors.scss';
+@import '../../../../../styles/metrics.scss';
+@import '../../../../../styles/mixins.scss';
+
+#container {
+  box-sizing: border-box;
+  margin-top: #{$msg-mg-top};
+  max-width: #{$msg-image-w};
+  padding: 0.5em;
+  @include border-radius-1(10px);
+
+  &[class*="right"] {
+    margin-left: calc(100% - #{$msg-image-w});
+    background-color: $color-1;
+    color: white;
+  }
+
+  &[class*="left"] {
+    background-color: $color-3;
+    color: white;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: $tablet-width) {
+  #container {
+    max-width: 100%;
+
+    &[class*="right"] {
+      margin-left: 0;
+    }
+  }
+}

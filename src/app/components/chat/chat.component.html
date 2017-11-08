@@ -2,6 +2,7 @@
   <div *ngFor="let metamsg of messages">
     <text-message *ngIf="metamsg.message.type === 'text'" [align]="metamsg.align" [text]="metamsg.message.text"></text-message>
     <video-message *ngIf="metamsg.message.type === 'video'" [align]="metamsg.align" [url]="metamsg.message.url"></video-message>
+    <image-message *ngIf="metamsg.message.type === 'image'" [align]="metamsg.align" [src]="metamsg.message.src"></image-message>
   </div>
 
   <typing-indicator *ngIf="isEmitterTyping"> </typing-indicator>

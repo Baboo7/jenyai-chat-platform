@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { ChatHeaderComponent } from './components/chat-header/chat-header.component';
 import { HeaderComponent } from './components/header/header.component';
+import { ImageComponent } from './components/chat/messages/image/image.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
 import { StudentChatComponent } from './components/student-chat/student-chat.component';
 import { StudentLoginComponent } from './components/student-login/student-login.component';
@@ -36,6 +37,7 @@ import { TokenManagerService } from './services/token-manager.service';
     ChatComponent,
     ChatHeaderComponent,
     HeaderComponent,
+    ImageComponent,
     LandingPageComponent,
     StudentChatComponent,
     StudentLoginComponent,
