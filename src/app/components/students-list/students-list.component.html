@@ -5,10 +5,15 @@
 
   <div class="list">
     <div class="item-container" *ngFor="let student of students; index as i" >
-      <div class="item" [class.active]="students[i]['id'] == selectedStudent" (click)="selectStudent(i)"> {{ student.name }} </div>
-      <div *ngIf="student.isTyping" class="badge-typing"> </div>
-      <div *ngIf="!student.isTyping && student.unseen > 0" class="badge-unseen"> {{ student.unseen }} </div>
-      <div *ngIf="!student.isTyping && student.unseen == 0" class="badge-uptodate"> </div>
+
+      <div class="item" [class.active]="students[i]['id'] == selectedStudent" (click)="onSelectStudent(i)"> {{ student.name }} </div>
+
+      <div (click)="onToggleStudentInterlocutor(i)">
+        <div *ngIf="student.discussWithAgent" class="badge-agent"> </div>
+        <div *ngIf="!student.discussWithAgent && student.isTyping" class="badge-typing"> </div>
+        <div *ngIf="!student.discussWithAgent && !student.isTyping && student.unseen > 0" class="badge-unseen"> {{ student.unseen }} </div>
+        <div *ngIf="!student.discussWithAgent && !student.isTyping && student.unseen == 0" class="badge-uptodate"> </div>
+      </div>
     </div>
   </div>
 </div>

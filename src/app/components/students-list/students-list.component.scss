@@ -54,10 +54,16 @@
   margin-left: 0.5em;
   width: #{$badge-size}px;
   height: #{$badge-size}px;
+  cursor: pointer;
   @include border-radius-1 (#{$badge-size/2}px);
   @include display-flex();
   @include align-items-center();
   @include justify-content-center();
+}
+
+.badge-agent {
+  @extend .badge-abstract;
+  background-color: $grey;
 }
 
 .badge-typing {

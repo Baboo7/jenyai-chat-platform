@@ -18,20 +18,48 @@ export class StudentsListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.websocket.addListener('connect-student').subscribe((data: any) => {
+
+    this.websocket.addListener('student-selected').subscribe((data: any) => {
       this.selectedStudentChange.emit(data.id);
     });
   }
 
   ngOnDestroy() {
+
     this.websocket.disconnect();
   }
 
-  selectStudent(id): void {
+  /*  Trigger the event to select a student.
+
+      PARAMS
+        id (string): id of the student to connect to
+
+      RETURN
+        none
+  */
+  onSelectStudent(id): void {
+
     let msg = {
       id: this.students[id].id
     };
 
-    this.websocket.send('connect-student', msg);
+    this.websocket.send('student-select', msg);
+  }
+
+  /*  Trigger the event to switch the student's interlocutor.
+
+      PARAMS
+        id (string): id of the student
+
+      RETURN
+        none
+  */
+  onToggleStudentInterlocutor(id): void {
+
+    let msg = {
+      id: this.students[id].id
+    };
+
+    this.websocket.send('student-switch', msg);
   }
 }
