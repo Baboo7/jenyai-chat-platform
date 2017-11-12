@@ -16,7 +16,7 @@
         <circle cx="10" cy="10" r="8" />
       </svg>
     </button>
-    <input [value]="userInput" (keydown)="handleKeyDown($event)" (input)="handleInput($event)" id="input-bar" placeholder="Aa" />
-    <button (click)="sendMessage()" id="send-button">Send</button>
+    <input [value]="userInput" (keydown)="onKeyDown($event)" (input)="onInput($event)" id="input-bar" placeholder="Aa" />
+    <button (click)="onSendMessage()" id="send-button">Send</button>
   </div>
 </div>
