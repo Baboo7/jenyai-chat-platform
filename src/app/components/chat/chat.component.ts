@@ -35,7 +35,8 @@ export class ChatComponent implements AfterViewChecked, DoCheck, OnDestroy {
     private speechRecognitionService: SpeechRecognitionService
   ) { }
 
-  ngAfterViewChecked() {
+  ngAfterViewChecked(): void {
+
     if (this.toScroll) {
       try {
         this.convTainer.nativeElement.scrollTop = this.convTainer.nativeElement.scrollHeight;
@@ -44,7 +45,8 @@ export class ChatComponent implements AfterViewChecked, DoCheck, OnDestroy {
     }
   }
 
-  ngDoCheck() {
+  ngDoCheck(): void {
+
     let newTotalMsgs = 0;
     if (this.messages) { newTotalMsgs = this.messages.length; }
     if (this.totalMsgs !== newTotalMsgs) {
@@ -60,7 +62,8 @@ export class ChatComponent implements AfterViewChecked, DoCheck, OnDestroy {
     }
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
+
     this.speechRecognitionService.DestroySpeechObject();
   }
 
@@ -101,7 +104,7 @@ export class ChatComponent implements AfterViewChecked, DoCheck, OnDestroy {
     }
   }
 
-  /*  Send a message to the server.
+  /*  Send the user input to the server.
 
       PARAMS
         none
@@ -109,7 +112,7 @@ export class ChatComponent implements AfterViewChecked, DoCheck, OnDestroy {
       RETURN
         none
   */
-  private onSendMessage(): void {
+  private onSendUserInput(): void {
 
     if (Utils.isEmpty(this.userInput)) {
       return;
@@ -139,7 +142,7 @@ export class ChatComponent implements AfterViewChecked, DoCheck, OnDestroy {
   private onKeyDown(event): void {
 
     if (event.keyCode === 13) {
-      this.onSendMessage();
+      this.onSendUserInput();
     }
 
     this.handleTypingState();

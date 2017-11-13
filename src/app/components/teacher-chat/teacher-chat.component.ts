@@ -93,6 +93,8 @@ export class TeacherChatComponent implements OnInit, OnDestroy {
   */
   private onMessage(messages: any[ ]): void {
 
+    if (!messages) return;
+
     messages.forEach(msg => {
       this.addMessage(msg);
     });

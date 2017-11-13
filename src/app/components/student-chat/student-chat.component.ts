@@ -34,7 +34,18 @@ export class StudentChatComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.websocket.addListener('init').subscribe((data: any) => {
+
       this.id = data.id;
+
+      // send an event to the agent to make it engage the conversation
+      let msg = {
+        type: 'event',
+        payload: {
+          event: 'engage_conversation'
+        }
+      };
+
+      this.websocket.send('message', msg);
     });
 
     this.websocket.addListener('message').subscribe((messages: any) => {
