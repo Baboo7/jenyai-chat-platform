@@ -163,6 +163,7 @@ export class ChatComponent implements AfterViewChecked, DoCheck, OnDestroy {
 
     this.websocket.send('message', msg);
     this.userInput = '';
+    this.quickReplies = [ ];
     this.media = 'typed';
   }
 
