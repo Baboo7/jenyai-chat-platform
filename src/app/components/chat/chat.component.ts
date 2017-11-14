@@ -21,6 +21,9 @@ export class ChatComponent implements AfterViewChecked, DoCheck, OnDestroy {
   @Input() private isEmitterTyping: boolean = false;
   private wasEmitterTyping: boolean = false;
 
+  // Contain a list of quick replies
+  @Input() private quickReplies: string[] = [ ];
+
   @Input() private messages;
   @Input() private userInput = '';
   // Indicate how the message has been entered: either 'typed' or 'speech'
@@ -67,6 +70,16 @@ export class ChatComponent implements AfterViewChecked, DoCheck, OnDestroy {
     this.speechRecognitionService.DestroySpeechObject();
   }
 
+
+
+  /******************************************
+  /*
+  /*      TEMPLATE EVENTS
+  /*
+  /*****************************************/
+
+
+
   /*  Toggle speech recognition.
 
       PARAMS
@@ -75,7 +88,7 @@ export class ChatComponent implements AfterViewChecked, DoCheck, OnDestroy {
       RETURN
         none
   */
-  private toggleSpeechRecognition(): void {
+  private onToggleSpeechRecognition(): void {
 
     this.recording = !this.recording;
 
@@ -102,6 +115,28 @@ export class ChatComponent implements AfterViewChecked, DoCheck, OnDestroy {
 
       this.recordSession.unsubscribe();
     }
+  }
+
+  /*  Handle click on a quick reply.
+
+      PARAMS
+        qr (object): quick reply object (see above)
+
+      RETURN
+        none
+  */
+  private onQuickReplyClicked(qr: any): void {
+
+    let msg = {
+      type: 'text',
+      payload: {
+        text: qr,
+        media: 'quick-reply'
+      }
+    };
+
+    this.websocket.send('message', msg);
+    this.quickReplies = [ ];
   }
 
   /*  Send the user input to the server.
@@ -162,6 +197,16 @@ export class ChatComponent implements AfterViewChecked, DoCheck, OnDestroy {
     this.userInputChange.emit(this.userInput);
     this.handleTypingState();
   }
+
+
+
+  /******************************************
+  /*
+  /*      CORE
+  /*
+  /*****************************************/
+
+
 
   /*  Handle the sending of typing indicator events.
 

@@ -6,17 +6,26 @@
   </div>
 
   <typing-indicator *ngIf="isEmitterTyping"> </typing-indicator>
+
+  <div id="quick-replies" *ngIf="quickReplies?.length !== 0">
+    <button
+      *ngFor="let qr of quickReplies"
+      (click)="onQuickReplyClicked(qr)"
+      class="quick-replies">
+      {{qr}}
+    </button>
+  </div>
 </div>
 
 
 <div id="input-container">
-  <div>
-    <button (click)="toggleSpeechRecognition()" id="record-button">
+  <div id="text">
+    <button id="record-button" (click)="onToggleSpeechRecognition()" >
       <svg [class.recording]="recording" width="20" height="20">
         <circle cx="10" cy="10" r="8" />
       </svg>
     </button>
-    <input [value]="userInput" (keydown)="onKeyDown($event)" (input)="onInput($event)" id="input-bar" placeholder="Aa" />
-    <button (click)="onSendUserInput()" id="send-button">Send</button>
+    <input id="input-bar" [value]="userInput" (keydown)="onKeyDown($event)" (input)="onInput($event)" placeholder="Aa" />
+    <button id="send-button" (click)="onSendUserInput()" >Send</button>
   </div>
 </div>

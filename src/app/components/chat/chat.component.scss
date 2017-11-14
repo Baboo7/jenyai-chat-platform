@@ -7,6 +7,28 @@
   @include flex-flow-column();
 }
 
+button[class*="quick-replies"] {
+  box-sizing: border-box;
+  padding: 1em 2em;
+
+  margin: 0.5em;
+
+  border-width: 2px;
+  border-style: solid;
+  @include border-radius-1(5px);
+  background-color: rgba(0,0,0,0);
+  border-color: $color-1;
+  color: $color-1;
+  cursor: pointer;
+
+  font-weight: bold;
+
+  &:hover {
+    background-color: $color-1;
+    color: $white;
+  }
+}
+
 #conversation-container {
   @include flex-grow(1);
   padding: 1em;
@@ -16,12 +38,20 @@
 #input-container {
   @include flex(0,0,auto);
   padding: 0 1em;
+}
 
-  > div {
-    @include display-flex();
-    border-top: 1px solid $grey;
-    padding: 1em 0;
-  }
+#quick-replies {
+  margin: 0 auto;
+  padding: 0.5em 0;
+  overflow-x: auto;
+  white-space: nowrap;
+  text-align: right;
+}
+
+#text {
+  @include display-flex();
+  border-top: 1px solid $grey;
+  padding: 0.5em 0;
 }
 
 #input-bar {
