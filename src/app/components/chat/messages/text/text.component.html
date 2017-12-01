@@ -1,8 +1,7 @@
 <div *ngIf="align == 'right'" id="filler"></div>
-<div
+<div id="container"
   [class.right]="align == 'right'"
   [class.left]="align == 'left'"
-  id="container">
-  {{text}}
+	[innerHtml]="text" >
 </div>
 <div *ngIf="align == 'left'" id="filler"></div>

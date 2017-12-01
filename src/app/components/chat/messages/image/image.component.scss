@@ -19,10 +19,34 @@
     background-color: $color-3;
     color: white;
   }
+}
 
-  img {
-    width: 100%;
-  }
+img {
+	width: 100%;
+	cursor: zoom-in;
+
+	&[class*="magnified"] {
+		position: absolute;
+		z-index: 10000;
+		top: 0;
+		left: 0;
+		right: 0;
+		margin: 1em auto;
+		width: 100%;
+		max-width: 800px;
+		cursor: zoom-out;
+	}
+}
+
+#bg-magnified {
+	position: fixed;
+	z-index: 9000;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: $black;
+	opacity: 0.9;
 }
 
 @media screen and (max-width: $tablet-width) {

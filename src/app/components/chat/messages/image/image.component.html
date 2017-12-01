@@ -1,3 +1,7 @@
-<div id="container" [class.right]="align == 'right'" [class.left]="align == 'left'">
-  <img [src]="src | safe">
+<div id="container"
+	[class.right]="align == 'right'"
+	[class.left]="align == 'left'"
+	(click)="onImageClicked()">
+  <img [src]="src | safe" [class.magnified]="magnified">
+	<div id="bg-magnified" *ngIf="magnified"></div>
 </div>

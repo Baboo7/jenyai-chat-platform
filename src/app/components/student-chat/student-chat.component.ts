@@ -15,9 +15,9 @@ export class StudentChatComponent implements OnInit, OnDestroy {
   private id: string;
   private isEmitterTyping: boolean = false;
   private messages = [ ];
-  private wordsPerMilliseconds: number = 270 / (60 * 1000);
-  private MaxDelay: number = 4.2 * 1000;
-  private defaultDelay: number = 1.2 * 1000;
+  private wordsPerMilliseconds: number = 300 / (60 * 1000);
+  private MaxDelay: number = 2.4 * 1000;
+  private defaultDelay: number = 1.1 * 1000;
   private delayBetweenMessages: number = 1.2 * 1000;
 
   private cssHeight: number;
@@ -100,9 +100,9 @@ export class StudentChatComponent implements OnInit, OnDestroy {
   private onMessage(messages: any[ ]): void {
 
     if (messages[0].emitterType === 'agent') {
-      this.simulateTyping(messages.reverse());
+      this.simulateTyping(this.parseMessages(messages.reverse()));
     } else {
-      this.messages = this.messages.concat(messages);
+      this.messages = this.messages.concat(this.parseMessages(messages));
     }
   }
 
@@ -169,6 +169,24 @@ export class StudentChatComponent implements OnInit, OnDestroy {
   private disconnect(): void {
     this.auth.disconnectStudent();
   }
+
+	/*  Parse received messages before adding them to the messages stack.
+
+      PARAMS
+        none
+
+      RETURN
+        none
+  */
+	private parseMessages(messages: any[ ]): any[ ] {
+		let parsedMessages = Object.assign([ ], messages)
+
+		parsedMessages.forEach(m => {
+			if (m.message.type === 'text') m.message.text = m.message.text.replace(/\n/g, '<br>')
+		})
+
+		return parsedMessages
+	}
 
   /*  Simulate typing of a message stack.
 
